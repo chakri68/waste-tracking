@@ -2,7 +2,7 @@ import { Button } from "primereact/button";
 
 export default function Registration() {
   return (
-    <form action="#" className="sign-up-form">
+    <form action="#" className="sign-up-form" style={{ height: "100vh" }}>
       <h2 className="title">Sign up</h2>
       <div className="input-field">
         <i className="fas fa-user"></i>

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Button } from "primereact/button";
 import { InputTextarea } from "primereact/inputtextarea";
 import { Checkbox } from "primereact/checkbox";
@@ -9,6 +9,23 @@ import { Tag } from "primereact/tag";
 import { Calendar } from "primereact/calendar";
 
 const Form = ({ submitCallback }) => {
+  const [lat, setlat] = useState("");
+  const [long, setlong] = useState("");
+  useEffect(() => {
+    if ("geolocation" in navigator) {
+      console.log("Available");
+    } else {
+      console.log("Not Available");
+    }
+    navigator.geolocation.getCurrentPosition(function (position) {
+      // console.log(position.coords.latitude);
+      console.log("Longitude is :", position.coords.longitude);
+      setlat(position.coords.latitude);
+      setlong(position.coords.longitude);
+      console.log({ lat }.lat);
+    });
+  }, []);
+
   const [Address, setAddress] = useState("");
   const [Description, setDescription] = useState("");
   const [value, setValue] = useState("");
@@ -23,6 +40,8 @@ const Form = ({ submitCallback }) => {
     formData.append("description", Description);
     formData.append("wasteType", value);
     formData.append("sinceDate", date);
+    formData.append("lat", lat);
+    formData.append("long", long);
     formData.append("image", fileUploadRef.current.files[0]);
     let res = await fetch("/api/upload/report", {
       method: "POST",

@@ -17,7 +17,12 @@ export default function Login() {
   };
   return (
     <>
-      <form method="Post" onSubmit={handleSubmit} className="sign-in-form">
+      <form
+        method="Post"
+        onSubmit={handleSubmit}
+        className="sign-in-form"
+        style={{ height: "100vh" }}
+      >
         <h2 className="title">Sign in</h2>
         <div className="input-field">
           <i className="fas fa-user"></i>
@@ -50,14 +55,13 @@ export default function Login() {
             <i className="fab fa-twitter"></i>
           </a>
           <a href="#" className="social-icon">
-            <i className="fab fa-google"></i>
+            <i class="fab fa-google"></i>
           </a>
           <a href="#" className="social-icon">
-            <i className="fab fa-linkedin-in"></i>
+            <i class="fab fa-linkedin-in"></i>
           </a>
         </div>
       </form>
-      <div></div>
     </>
   );
 }

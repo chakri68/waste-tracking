@@ -149,6 +149,8 @@ input {
 form {
   display: flex;
   align-items: center;
+  height: 100%;
+  background-color: white;
   justify-content: center;
   flex-direction: column;
   padding: 0rem 5rem;
@@ -159,14 +161,11 @@ form {
 }
 
 form.sign-up-form {
-  margin-top: 80px;
-  margin-bottom: 30px;
   /* opacity: 0; */
   z-index: 10000;
 }
 
 form.sign-in-form {
-  margin-top: 80px;
   margin-bottom: 30px;
   z-index: 10000;
 }
