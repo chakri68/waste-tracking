@@ -1,6 +1,4 @@
-import React from "react";
 import { Link } from "react-router-dom";
-import "./registration_styles.css";
 import { Button } from "primereact/button";
 
 function Registration() {

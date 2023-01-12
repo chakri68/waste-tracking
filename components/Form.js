@@ -8,7 +8,7 @@ import { ProgressBar } from "primereact/progressbar";
 import { Tag } from "primereact/tag";
 import { Calendar } from "primereact/calendar";
 
-const Form = () => {
+const Form = ({ submitCallback }) => {
   const [Address, setAddress] = useState("");
   const [Description, setDescription] = useState("");
   const [value, setValue] = useState("");
@@ -16,6 +16,21 @@ const Form = () => {
   const fileUploadRef = useRef(null);
 
   const options = ["Dry Waste", "Wet Waste"];
+
+  async function submitForm() {
+    let formData = new FormData();
+    formData.append("address", Address);
+    formData.append("description", Description);
+    formData.append("wasteType", value);
+    formData.append("sinceDate", date);
+    formData.append("image", fileUploadRef.current.files[0]);
+    let res = await fetch("/api/upload/report", {
+      method: "POST",
+      body: formData,
+    });
+    let data = await res.json();
+    console.log({ data });
+  }
 
   // File Upload
   const [totalSize, setTotalSize] = useState(0);

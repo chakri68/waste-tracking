@@ -1,10 +1,9 @@
-
 :root {
   --max-width: 1100px;
   --border-radius: 12px;
-  --font-mono: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
-    'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
-    'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
+  --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
+    "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro",
+    "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
 
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -491,7 +490,7 @@ form.sign-in-form {
   }
 }
 
-@media(max-width: 1190px) {
+@media (max-width: 1190px) {
   .blob {
     display: none;
   }
@@ -534,7 +533,7 @@ form.sign-in-form {
 }
 
 .accordion-demo .accordion-custom span {
-  margin: 0 .5rem;
+  margin: 0 0.5rem;
 }
 
 .accordion-demo .p-accordion p {
@@ -542,7 +541,7 @@ form.sign-in-form {
   margin: 0;
 }
 .dialog-demo .p-button {
-  margin: 0 .5rem 0 0;
+  margin: 0 0.5rem 0 0;
   min-width: 10rem;
 }
 
