@@ -1,12 +1,34 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Button } from "primereact/button";
 import { Menubar } from "primereact/menubar";
 import { Menu } from "primereact/menu";
-import { Gallery } from "./Gallery";
+import Gallery from "./Gallery";
 import { InputText } from "primereact/inputtext";
 import { Avatar } from "primereact/avatar";
+import { InputTextarea } from "primereact/inputtextarea";
+import { Dialog } from "primereact/dialog";
 
 const Main = () => {
+  // Required
+  const [displayResponsive, setDisplayResponsive] = useState(false);
+  const [description, setdescription] = useState("");
+  // End
+
+  const dialogFuncMap = {
+    displayResponsive: setDisplayResponsive,
+  };
+  const onClick = (name, position) => {
+    dialogFuncMap[`${name}`](true);
+
+    if (position) {
+      setPosition(position);
+    }
+  };
+
+  const onHide = (name) => {
+    dialogFuncMap[`${name}`](false);
+  };
+
   const menu = useRef(null);
   const items = [{ label: " " }, { label: "Home" }, { label: "Faqs" }];
   const menuitems = [
@@ -157,10 +179,13 @@ const Main = () => {
           </div>
         </div>
       </div>
-      <br />
-      <br />
-      {/* <Gallery /> */}
-      <br />
+
+      <div
+        className="gallery"
+        style={{ padding: "40px", backgroundColor: "white" }}
+      >
+        <Gallery />
+      </div>
       {/* Start of Map */}
       <div className="surface-0 p-4 shadow-2 border-round">
         <div className="surface-0 text-700 text-center">
@@ -204,10 +229,70 @@ const Main = () => {
               Be the change you wish to see in the world - Join our waste
               management team as a volunteer today!
             </div>
+            {/* Volunteer Form */}
             <Button
               label="Join Now"
+              onClick={() => onClick("displayResponsive")}
               className="font-bold px-5 py-3 p-button-raised p-button-rounded white-space-nowrap"
             />
+            <Dialog
+              visible={displayResponsive}
+              onHide={() => onHide("displayResponsive")}
+              breakpoints={{ "960px": "75vw" }}
+              style={{ width: "50vw" }}
+            >
+              <div className="flex align-items-center justify-content-center">
+                <div className="text-center mb-5">
+                  <img
+                    src="./logo1.png"
+                    alt="hyper"
+                    height={80}
+                    className="mb-3"
+                  />
+                  <div className="text-900 text-3xl font-medium mb-3">
+                    Volunteer Form
+                  </div>
+
+                  <div style={{ padding: "30px" }}>
+                    <label
+                      htmlFor="text"
+                      className="block text-900 font-medium mb-2"
+                    >
+                      Preffered Name
+                    </label>
+                    <InputText
+                      id="name"
+                      type="text"
+                      placeholder="Enter Name"
+                      className="w-full mb-3"
+                    />
+
+                    <label
+                      htmlFor="text"
+                      className="block text-900 font-medium mb-2"
+                    >
+                      Why you want to bocome a volunteer?
+                    </label>
+
+                    <InputTextarea
+                      rows={5}
+                      cols={60}
+                      value={description}
+                      onChange={(e) => setdescription(e.target.value)}
+                    />
+
+                    <br />
+                    <br />
+
+                    <Button
+                      label="Submit"
+                      icon="pi pi-user"
+                      className="w-full"
+                    />
+                  </div>
+                </div>
+              </div>
+            </Dialog>
           </div>
         </div>
       </div>

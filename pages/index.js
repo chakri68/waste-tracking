@@ -6,7 +6,9 @@ import Main from "../components/Home";
 import "primereact/resources/themes/lara-light-indigo/theme.css"; //theme
 import "primereact/resources/primereact.min.css"; //core css
 import "primeicons/primeicons.css"; //icons
+import "bootstrap/dist/css/bootstrap.min.css";
 import "/node_modules/primeflex/primeflex.css";
+
 import Form from "../components/Form";
 import Login from "../components/Login";
 import ReportForm from "../components/ReportForm";
