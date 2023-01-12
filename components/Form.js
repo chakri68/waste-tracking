@@ -7,6 +7,7 @@ import { FileUpload } from "primereact/fileupload";
 import { ProgressBar } from "primereact/progressbar";
 import { Tag } from "primereact/tag";
 import { Calendar } from "primereact/calendar";
+import NavBar from "./NavBar";
 
 const Form = ({ submitCallback }) => {
   const [lat, setlat] = useState("");
@@ -204,18 +205,24 @@ const Form = ({ submitCallback }) => {
 
   return (
     <div style={{ backgroundColour: "white", width: "100vw" }}>
-      <div className="flex align-items-center justify-content-center">
+      <div>
+        <NavBar />
+      </div>
+      <div
+        className="flex align-items-center justify-content-center mt-8"
+        id="Form"
+      >
         <div
           className="surface-card shadow-2 border-round w-full lg:w-12"
           style={{
-            paddingLeft: "400px",
-            paddingRight: "400px",
+            paddingLeft: "300px",
+            paddingRight: "300px",
             paddingTop: "30px",
             paddingBottom: "30px",
           }}
         >
           <div className="text-center mb-5">
-            <img src="./logo1.png" alt="hyper" height={80} className="mb-3" />
+            <img src="./logo1.png" alt="hyper" height={100} className="mb-3" />
             <div className="text-900 text-3xl font-medium mb-3">
               Take action now and fill out this form to help preserve our planet
               for future generations.
@@ -263,12 +270,12 @@ const Form = ({ submitCallback }) => {
               onChange={(e) => setValue(e.value)}
             />
             <br />
-            <label htmlFor="email" className="block text-900 font-medium mb-2">
+            <label htmlFor="text" className="block text-900 font-medium mb-2">
               Address
             </label>
             <InputTextarea
               rows={3}
-              cols={82}
+              cols={106}
               value={Address}
               onChange={(e) => setAddress(e.target.value)}
             />
@@ -282,7 +289,7 @@ const Form = ({ submitCallback }) => {
             </label>
             <InputTextarea
               rows={5}
-              cols={82}
+              cols={106}
               value={Description}
               onChange={(e) => setDescription(e.target.value)}
             />

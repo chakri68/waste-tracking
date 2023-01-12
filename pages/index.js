@@ -21,7 +21,8 @@ export default function Home() {
   return (
     <>
       {/* <Main /> */}
-      <Form />
+      {/* <Form /> */}
+      <Profile />
       {/* <Login /> */}
       {/* <ReportForm /> */}
       {/* <Profile /> */}

@@ -1,12 +1,10 @@
 import React, { useRef, useState } from "react";
 import { Button } from "primereact/button";
-import { Menubar } from "primereact/menubar";
-import { Menu } from "primereact/menu";
-import Gallery from "./Gallery";
 import { InputText } from "primereact/inputtext";
 import { Avatar } from "primereact/avatar";
 import { InputTextarea } from "primereact/inputtextarea";
 import { Dialog } from "primereact/dialog";
+import NavBar from "./NavBar";
 
 const Main = () => {
   // Required
@@ -29,72 +27,12 @@ const Main = () => {
     dialogFuncMap[`${name}`](false);
   };
 
-  const menu = useRef(null);
-  const items = [{ label: " " }, { label: "Home" }, { label: "Faqs" }];
-  const menuitems = [
-    { label: "Logout", icon: "pi pi-fw pi-power-off" },
-    { label: "Home", icon: "pi pi-fw pi-home" },
-    {
-      label: "Login",
-      icon: "pi pi-fw pi-sign-in",
-    },
-    {
-      label: "Profile",
-      icon: "pi pi-fw pi-user",
-    },
-  ];
-  const start = [
-    <>
-      <div style={{ display: "flex" }}>
-        <img alt="logo" src="./logo1.png" height="80" className="mr-2"></img>
-
-        <span
-          className="text-blue-800 text-center"
-          style={{ display: "flex", alignItems: "center" }}
-        >
-          Go Clean
-        </span>
-      </div>
-    </>,
-  ];
-  const end = [
-    <>
-      <Menu
-        model={menuitems}
-        popup
-        ref={menu}
-        id="popup_menu"
-        style={{ zIndex: "1000" }}
-      />{" "}
-      <Avatar
-        icon="pi pi-user"
-        className="mr-2"
-        size="large"
-        style={{ backgroundColor: "#2196F3", color: "#ffffff" }}
-        shape="circle"
-        onClick={(event) => menu.current.toggle(event)}
-      />
-      ,
-    </>,
-  ];
   return (
     <div>
       <div>
-        <div className="card">
-          <Menubar
-            model={items}
-            start={start}
-            end={end}
-            style={{
-              height: "80px",
-              position: "fixed",
-              width: "100vw",
-              zIndex: "1000",
-            }}
-          />
-        </div>
+        <NavBar />
       </div>
-      <div className="grid grid-nogutter surface-0 text-800">
+      <div className="grid grid-nogutter surface-0 text-800 mt-5">
         <div className="col-12 md:col-6 p-6 text-center md:text-left flex align-items-center ">
           <section>
             <span className="block text-6xl font-bold mb-1">
@@ -113,10 +51,12 @@ const Main = () => {
         </div>
         <div className="col-12 md:col-6 overflow-hidden">
           <img
-            src="./clean.jpg"
+            src="./Clean.webp"
             alt="hero-1"
             className="md:ml-auto block md:h-full"
             style={{
+              height: "50vh",
+              width: "50vw",
               clipPath: "polygon(8% 0, 100% 0%, 100% 100%, 0 100%)",
             }}
           />
@@ -124,11 +64,11 @@ const Main = () => {
       </div>
 
       <div className="surface-0 text-center">
-        <div className="mb-3 font-bold text-3xl">
+        <div className="mb-3 font-bold text-5xl">
           <span className="text-900">One Product, </span>
           <span className="text-blue-600">save future</span>
         </div>
-        <div className="text-700 mb-6">
+        <div className="text-1xl mb-6">
           Unlock the power of sustainability with our website - learn how to
           save the future, one step at a time
         </div>
@@ -179,21 +119,15 @@ const Main = () => {
           </div>
         </div>
       </div>
-
-      <div
-        className="gallery"
-        style={{ padding: "40px", backgroundColor: "white" }}
-      >
-        <Gallery />
-      </div>
       {/* Start of Map */}
-      <div className="surface-0 p-4 shadow-2 border-round">
+      <div className="surface-0 p-4 shadow-2 border-round pt-5 pb-3">
         <div className="surface-0 text-700 text-center">
           <div className="text-900 font-bold text-5xl mb-3">
-            Found Waste near you?
+            Spot waste near you?
           </div>
           <Button
             label="Report to us"
+            herf="http://localhost:3000/report"
             className="font-bold px-5 py-3 p-button-raised p-button-rounded white-space-nowrap"
           />
         </div>

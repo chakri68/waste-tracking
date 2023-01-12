@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Paginator } from "primereact/paginator";
 import UserRequest from "./UserRequest";
+import NavBar from "./NavBar";
 
 const Profile = () => {
   const [basicFirst, setBasicFirst] = useState(0);
@@ -10,9 +11,12 @@ const Profile = () => {
     setBasicRows(event.rows);
   };
   return (
-    <div>
-      <div className="grid grid-nogutter surface-0 text-800">
-        <div className="col-12 md:col-6 overflow-hidden">
+    <div className="root" style={{ backgroundColor: "white" }}>
+      <div>
+        <NavBar />
+      </div>
+      <div className="grid grid-nogutter surface-0 text-800 pt-5">
+        <div className="col-12 md:col-6 overflow-hidden flex align-items-center">
           <img
             src="./av-5.png"
             alt="hero-1"
@@ -24,7 +28,7 @@ const Profile = () => {
           />
         </div>
         <div className="col-12 md:col-6 p-6 text-center md:text-left flex align-items-center ">
-          <section>
+          {/* <section>
             <span className="block text-3xl font-bold mb-1">Name :</span>
             <p
               style={{
@@ -61,7 +65,29 @@ const Profile = () => {
             <span className="block text-3xl font-bold mb-1">
               Number of badges : &nbsp;&nbsp; data.count
             </span>
-          </section>
+          </section> */}
+          <div className="flex-initial">
+            <div className="mb-3 pr-2 flex-initial font-bold text-6xl text-center">
+              <span className="text-1100">User </span>
+              <span className="text-blue-1100">Details</span>
+            </div>
+            <div className="mb-3 text-center">
+              <span className="block text-2xl mb-1">
+                <strong>Name:</strong> John Doe
+              </span>
+              <span className="block text-2xl mb-1">
+                <strong>Location:</strong> losagels
+              </span>
+              <span className="block text-2xl  mb-1">
+                <strong>Email:</strong> johndoe@example.com
+              </span>
+
+              <span className="block text-2xl  mb-1">
+                <strong>Number of contributions:</strong>
+                <img src="./Badge.webp" style={{ height: "50px" }} /> 0
+              </span>
+            </div>
+          </div>
         </div>
       </div>
       <div
@@ -71,14 +97,13 @@ const Profile = () => {
         Your Reaquests
       </div>
       <div className="items">
-        <div className="surface-0 p-4 shadow-2 border-round">
-          <div
-            style={{ height: "50vh" }}
-            className="border-2 border-dashed border-300"
-          >
-            <UserRequest />
-          </div>
+        <div
+          style={{ height: "50vh" }}
+          className="border-2 border-dashed border-300 border-round-lg"
+        >
+          <UserRequest />
         </div>
+
         <Paginator
           first={basicFirst}
           rows={basicRows}

@@ -117,7 +117,11 @@ body, */
 input {
   font-family: "Poppins", sans-serif;
 }
-
+#Form{
+  background-image: url("../public/India.webp");
+  background-size: cover;
+  position: relative;
+}
 .container {
   position: relative;
   width: 100%;
@@ -551,4 +555,30 @@ form.sign-in-form {
 
 .dialog-demo .p-dialog .p-button {
   min-width: 6rem;
+}
+
+
+
+
+
+.profile-details {
+  width: 80%;
+  margin: 60px auto;
+  text-align: left;
+  align-items: center;
+}
+
+.profile-details h2 {
+  margin-top: 0;
+  font-size: 1.0rem;
+}
+
+.profile-details ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.profile-details li {
+  margin-bottom: 10px;
 }
