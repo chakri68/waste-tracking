@@ -1,24 +1,49 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import swal from "sweetalert";
 import { Button } from "primereact/button";
+import { signIn, useSession } from "next-auth/react";
+import { useRouter } from "next/router";
 
 export default function Login() {
+  let session = useSession();
+
+  console.log({ session });
+
+  const router = useRouter();
   let [name, setName] = useState("");
   let [username, setUsername] = useState("");
   let [password, setPassword] = useState("");
 
-  const handleSubmit = async (ev) => {
-    swal({
-      //     text: "Sucussfully Logged in",
-      //     icon: "success",
-      //     type: "success",
-      //   });
+  if (session.status == "authenticated") {
+    router.replace("/");
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    let res = await signIn("credentials", {
+      redirect: false,
+      username: username,
+      password: password,
+      callbackUrl: "/",
     });
+    console.log({ res });
+    if (res.ok) {
+      swal({
+        text: "Successfully Logged in",
+        icon: "success",
+      });
+      router.push(res.url);
+    } else {
+      swal({
+        text: "Wrong Credentials",
+        icon: "error",
+      });
+    }
   };
   return (
     <>
       <form
-        method="Post"
+        method="post"
         onSubmit={handleSubmit}
         className="sign-in-form"
         style={{ height: "100vh" }}
@@ -43,7 +68,6 @@ export default function Login() {
         <br />
         <Button
           label="Sign In"
-          onClick={""}
           className="font-bold px-5 py-3 p-button-raised p-button-rounded white-space-nowrap"
         />
 
@@ -65,10 +89,10 @@ export default function Login() {
             <i className="fab fa-twitter"></i>
           </a>
           <a href="#" className="social-icon">
-            <i class="fab fa-google"></i>
+            <i className="fab fa-google"></i>
           </a>
           <a href="#" className="social-icon">
-            <i class="fab fa-linkedin-in"></i>
+            <i className="fab fa-linkedin-in"></i>
           </a>
         </div>
       </form>

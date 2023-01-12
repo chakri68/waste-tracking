@@ -27,6 +27,8 @@ const Form = ({ submitCallback }) => {
     });
   }, []);
 
+  const [loading, setLoading] = useState(false);
+
   const [Address, setAddress] = useState("");
   const [Description, setDescription] = useState("");
   const [value, setValue] = useState("");
@@ -35,21 +37,23 @@ const Form = ({ submitCallback }) => {
 
   const options = ["Dry Waste", "Wet Waste"];
 
-  async function submitForm() {
+  async function handleSubmit() {
+    setLoading(true);
     let formData = new FormData();
     formData.append("address", Address);
     formData.append("description", Description);
     formData.append("wasteType", value);
     formData.append("sinceDate", date);
-    formData.append("lat", lat);
-    formData.append("long", long);
-    formData.append("image", fileUploadRef.current.files[0]);
+    formData.append("geoLocation[lat]", lat);
+    formData.append("geoLocation[long]", long);
+    formData.append("image", fileUploadRef.current.getFiles()[0]);
     let res = await fetch("/api/upload/report", {
       method: "POST",
       body: formData,
     });
     let data = await res.json();
     console.log({ data });
+    setLoading(false);
   }
 
   // File Upload
@@ -313,7 +317,13 @@ const Form = ({ submitCallback }) => {
             </div>
 
             <br />
-            <Button label="Submit" icon="pi pi-send" className="w-full" />
+            <Button
+              loading={loading}
+              onClick={handleSubmit}
+              label="Submit"
+              icon="pi pi-send"
+              className="w-full"
+            />
           </div>
         </div>
       </div>

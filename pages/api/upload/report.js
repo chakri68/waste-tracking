@@ -16,10 +16,10 @@ const secret = process.env.NEXTAUTH_SECRET;
 export default async function handler(req, res) {
   if (req.method == "POST") {
     const token = await getToken({ req, secret });
-    if (!token?.data) {
+    if (!token?.user) {
       return res.status(403).json({ ok: false, result: "Login required.." });
     }
-    let { username } = token.data;
+    let { username } = token.user;
     let multerUpload = (req, res) => {
       let storage = multer.memoryStorage();
       let uploadParser = multer({
@@ -65,12 +65,10 @@ export default async function handler(req, res) {
     try {
       let multerReq = await multerUpload(req, res);
       let uploadRes = await uploadFromBuffer(multerReq);
-      console.log("UploadRes: ", uploadRes);
       const {
         body: { geoLocation, description, sinceDate, address, wasteType },
       } = multerReq;
       const imageURL = uploadRes.secure_url;
-      console.log("body: ", multerReq.body);
 
       let connection = await clientPromise;
       let db = connection.db("waste_tracking");

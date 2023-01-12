@@ -1,13 +1,58 @@
-import Link from "next/link";
+import { useRouter } from "next/router";
 import { Button } from "primereact/button";
+import { useState } from "react";
+import swal from "sweetalert";
 
 export default function Registration() {
+  let router = useRouter();
+  let [loading, setLoading] = useState(false);
+  let [username, setUsername] = useState("");
+  let [password, setPassword] = useState("");
+
+  async function handleSubmit(e) {
+    setLoading(true);
+    e.preventDefault();
+    let res = await fetch("/api/auth/signup", {
+      method: "POST",
+      body: JSON.stringify({
+        username,
+        password,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    let data = await res.json();
+    console.log({ data });
+    if (data.ok) {
+      swal({
+        text: "Successfully Signed up",
+        icon: "success",
+      });
+      router.push("/login");
+    } else {
+      swal({
+        text: "Error",
+        icon: "error",
+      });
+    }
+    setLoading(false);
+  }
   return (
-    <form action="#" className="sign-up-form" style={{ height: "100vh" }}>
+    <form
+      method="post"
+      onSubmit={handleSubmit}
+      className="sign-up-form"
+      style={{ height: "100vh" }}
+    >
       <h2 className="title">Sign up</h2>
       <div className="input-field">
         <i className="fas fa-user"></i>
-        <input type="text" placeholder="Username" />
+        <input
+          type="text"
+          placeholder="Username"
+          onChange={({ target }) => setUsername(target.value)}
+        />
       </div>
       <div className="input-field">
         <i className="fas fa-envelope"></i>
@@ -15,12 +60,16 @@ export default function Registration() {
       </div>
       <div className="input-field">
         <i className="fas fa-lock"></i>
-        <input type="password" placeholder="Password" />
+        <input
+          type="password"
+          placeholder="Password"
+          onChange={({ target }) => setPassword(target.value)}
+        />
       </div>
       <br />
       <Button
         label="Sign Up"
-        onClick={""}
+        loading={loading}
         className="font-bold px-5 py-3 p-button-raised p-button-rounded white-space-nowrap"
       />
       <p className="social-text">Or{""}</p>

@@ -5,7 +5,7 @@ const secret = process.env.NEXTAUTH_SECRET;
 
 export default async function handler(req, res) {
   const token = await getToken({ req, secret });
-  if (!token?.data) {
+  if (!token?.user) {
     return res.status(403).json({ ok: false, result: "Login required.." });
   }
   if (req.method === "POST") {
