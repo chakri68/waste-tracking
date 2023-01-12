@@ -104,7 +104,10 @@ const Form = ({ submitCallback }) => {
 
   const emptyTemplate = () => {
     return (
-      <div className="flex align-items-center flex-column">
+      <div
+        className="flex align-items-center flex-column"
+        style={{ backgroundColour: "white" }}
+      >
         <i
           className="pi pi-image mt-3 p-5"
           style={{
@@ -200,9 +203,17 @@ const Form = ({ submitCallback }) => {
   <iframe src="https://embed.lottiefiles.com/animation/99272"></iframe>;
 
   return (
-    <div>
+    <div style={{ backgroundColour: "white", width: "100vw" }}>
       <div className="flex align-items-center justify-content-center">
-        <div className="surface-card p-4 shadow-2 border-round w-full lg:w-6">
+        <div
+          className="surface-card shadow-2 border-round w-full lg:w-12"
+          style={{
+            paddingLeft: "400px",
+            paddingRight: "400px",
+            paddingTop: "30px",
+            paddingBottom: "30px",
+          }}
+        >
           <div className="text-center mb-5">
             <img src="./logo1.png" alt="hyper" height={80} className="mb-3" />
             <div className="text-900 text-3xl font-medium mb-3">
@@ -294,8 +305,6 @@ const Form = ({ submitCallback }) => {
               />
             </div>
 
-            <br />
-            <br />
             <br />
             <Button label="Submit" icon="pi pi-send" className="w-full" />
           </div>
