@@ -43,7 +43,18 @@ export default async function auth(req, res) {
     }),
   ];
 
+  const callbacks = {
+    async jwt({ token, user }) {
+      // Persist the OAuth access_token and or the user id to the token right after signin
+      if (user) {
+        token.user = user.user;
+      }
+      return token;
+    },
+  };
+
   return await NextAuth(req, res, {
     providers,
+    callbacks,
   });
 }
