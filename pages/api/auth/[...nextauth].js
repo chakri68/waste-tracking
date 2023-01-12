@@ -34,7 +34,7 @@ export default async function auth(req, res) {
         const user = await res.json();
 
         // If no error and we have user data, return it
-        if (res.ok && user) {
+        if (res.ok && user.ok) {
           return user;
         }
         // Return null if user data could not be retrieved
