@@ -1,14 +1,22 @@
 import { useState } from "react";
 import swal from "sweetalert";
 import { Button } from "primereact/button";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 
 export default function Login() {
+  let session = useSession();
+
+  console.log({ session });
+
   const router = useRouter();
   let [name, setName] = useState("");
   let [username, setUsername] = useState("");
   let [password, setPassword] = useState("");
+
+  if (session.status == "authenticated") {
+    router.replace("/");
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
