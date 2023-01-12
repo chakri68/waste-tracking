@@ -63,7 +63,7 @@ const Main = () => {
         </div>
       </div>
 
-      <div className="surface-0 text-center">
+      <div className="surface-0 text-center pt-3">
         <div className="mb-3 font-bold text-5xl">
           <span className="text-900">One Product, </span>
           <span className="text-blue-600">save future</span>
@@ -120,9 +120,9 @@ const Main = () => {
         </div>
       </div>
       {/* Start of Map */}
-      <div className="surface-0 p-4 shadow-2 border-round pt-5 pb-3">
+      <div className="surface-0 p-8 shadow-2 border-round pt-5 pb-3">
         <div className="surface-0 text-700 text-center">
-          <div className="text-900 font-bold text-5xl mb-3">
+          <div className="text-900 font-bold text-5xl pt-3 mb-3">
             Spot waste near you?
           </div>
           <Button
@@ -180,7 +180,7 @@ const Main = () => {
                   <img
                     src="./logo1.png"
                     alt="hyper"
-                    height={80}
+                    height={120}
                     className="mb-3"
                   />
                   <div className="text-900 text-3xl font-medium mb-3">

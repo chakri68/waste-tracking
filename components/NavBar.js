@@ -8,14 +8,26 @@ const NavBar = () => {
   const items = [{ label: " " }, { label: "Home" }, { label: "Faqs" }];
   const menuitems = [
     { label: "Logout", icon: "pi pi-fw pi-power-off" },
-    { label: "Home", icon: "pi pi-fw pi-home" },
+    {
+      label: "Home",
+      icon: "pi pi-fw pi-home",
+      command: (e) => {
+        window.location.hash = "";
+      },
+    },
     {
       label: "Login",
       icon: "pi pi-fw pi-sign-in",
+      command: (e) => {
+        window.location.hash = "login";
+      },
     },
     {
       label: "Profile",
       icon: "pi pi-fw pi-user",
+      command: (e) => {
+        window.location.hash = "profile";
+      },
     },
   ];
   const start = [

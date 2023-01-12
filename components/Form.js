@@ -226,7 +226,7 @@ const Form = ({ submitCallback }) => {
           }}
         >
           <div className="text-center mb-5">
-            <img src="./logo1.png" alt="hyper" height={100} className="mb-3" />
+            <img src="./logo1.png" alt="hyper" height={150} className="mb-3" />
             <div className="text-900 text-3xl font-medium mb-3">
               Take action now and fill out this form to help preserve our planet
               for future generations.
