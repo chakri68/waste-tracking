@@ -6,7 +6,6 @@ export default async function handler(req, res) {
   if (req.method === "POST") {
     //Getting email and password from body
     const { username, password } = req.body;
-    console.log(username, password);
     // Validate
     if (!username || !password) {
       res.status(422).json({ ok: false, message: "Invalid Data" });
