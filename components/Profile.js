@@ -28,44 +28,6 @@ const Profile = () => {
           />
         </div>
         <div className="col-12 md:col-6 p-6 text-center md:text-left flex align-items-center ">
-          {/* <section>
-            <span className="block text-3xl font-bold mb-1">Name :</span>
-            <p
-              style={{
-                margin: "0",
-                marginBottom: "0",
-                fontSize: "1.2rem",
-                fontWeight: "bold",
-              }}
-            >
-              &nbsp;&nbsp; data.name
-            </p>
-            <span className="block text-3xl font-bold mb-1">Email :</span>
-            <p
-              style={{
-                margin: "0",
-                marginBottom: "0",
-                fontSize: "1.2rem",
-                fontWeight: "bold",
-              }}
-            >
-              &nbsp;&nbsp; data.email
-            </p>
-            <span className="block text-3xl font-bold mb-1">Location :</span>
-            <p
-              style={{
-                margin: "0",
-                marginBottom: "0",
-                fontSize: "1.5rem",
-                fontWeight: "bold",
-              }}
-            >
-              &nbsp;&nbsp; data.Location
-            </p>
-            <span className="block text-3xl font-bold mb-1">
-              Number of badges : &nbsp;&nbsp; data.count
-            </span>
-          </section> */}
           <div className="flex-initial">
             <div className="mb-3 pr-2 flex-initial font-bold text-6xl text-center">
               <span className="text-1100">User </span>
