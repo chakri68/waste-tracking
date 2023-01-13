@@ -1,39 +1,46 @@
 import { useEffect, useState } from "react";
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import {
+  MapContainer,
+  Marker,
+  Popup,
+  TileLayer,
+  ZoomControl,
+} from "react-leaflet";
 
 const Map = () => {
-  const [lat, setlat] = useState("-75.546518086577947");
-  const [long, setlong] = useState("45.467134581917357");
+  const [lat, setlat] = useState(null);
+  const [long, setlong] = useState(null);
   const [data, setdata] = useState([
     {
-      user_id: "1234567",
-      coordinates: [-75.546518086577947, 45.467134581917357],
-      date: 12 - 3 - 23,
-      img: "./logo1",
-      name: "chaitanya",
+      geoLocation: { lat: -75.546518086577947, long: 45.467134581917357 },
+      date: "12 - 3 - 23",
+      imageURL: "./logo1",
     },
   ]);
   useEffect(() => {
     // Geo Location
     navigator.geolocation.getCurrentPosition(function (position) {
-      console.log(position.coords.latitude);
-      console.log("Longitude is :", position.coords.longitude);
       setlat(position.coords.latitude);
       setlong(position.coords.longitude);
     });
     // Api fetch
-    fetch(`https://jsonplaceholder.typicode.com/posts`)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(
-            `This is an HTTP error: The status is ${response.status}`
-          );
+    fetch(`/api/reports`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+    })
+      .then((response) => response.json())
+      .then((actualData) => {
+        if (actualData.ok) {
+          let allReports = [];
+          for (let reports of actualData.result) {
+            if (reports?.reports) allReports.push(...reports.reports);
+          }
+          console.log({ data: allReports });
+          setdata(allReports);
         }
-        return response.json();
       })
-      .then((actualData) => setdata(actualData))
       .catch((err) => {
-        console.log(err.message);
+        console.log(err);
       });
   }, []);
   const [Hover, setHover] = useState(null);
@@ -41,21 +48,34 @@ const Map = () => {
 
   return (
     <div style={{ width: "100%", height: "300px" }}>
-      <MapContainer center={[lat, long]} zoom={12} scrollWheelZoom={false}>
+      <MapContainer
+        center={lat && long ? [lat, long] : undefined}
+        zoom={12}
+        zoomControl={false}
+        scrollWheelZoom={false}
+      >
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         />
-        {data.map((key) => (
-          <Marker
-            key={key.user_id}
-            position={[key.coordinates[1], key.coordinates[0]]}
-            eventHandlers={{ click: () => setHover(key) }}
-          />
-        ))}
+        {data.map((key, ind) => {
+          return (
+            <Marker
+              key={ind}
+              position={[
+                parseFloat(key.geoLocation.lat),
+                parseFloat(key.geoLocation.long),
+              ]}
+              eventHandlers={{ click: () => setHover(key) }}
+            />
+          );
+        })}
         {Hover && (
           <Popup
-            position={[Hover.coordinates[1], Hover.coordinates[0]]}
+            position={[
+              parseFloat(Hover.geoLocation.lat),
+              parseFloat(Hover.geoLocation.long),
+            ]}
             onClose={() => {
               setHover(null);
             }}
@@ -74,6 +94,7 @@ const Map = () => {
             </div>
           </Popup>
         )}
+        <ZoomControl style={{ zIndex: 3 }} />
       </MapContainer>
     </div>
   );

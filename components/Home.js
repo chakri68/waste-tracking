@@ -178,11 +178,10 @@ const Main = () => {
               className="font-bold px-5 py-3 p-button-raised p-button-rounded white-space-nowrap"
             />
             <Dialog
-              className="pt-6"
               visible={displayResponsive}
               onHide={() => onHide("displayResponsive")}
               // breakpoints={{ "960px": "75vw" }}
-              style={{ width: "50vw", zIndex: "10000000", height: "100vh" }}
+              style={{ width: "50vw", zIndex: "1200", height: "100vh" }}
             >
               <div className="flex align-items-center justify-content-center">
                 <div className="text-center mb-3">
