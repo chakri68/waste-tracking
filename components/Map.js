@@ -1,18 +1,18 @@
-import React from "react";
+import { useState } from "react";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 
 const Map = () => {
+  const [Hover, setHover] = useState(null);
   const data = [
     {
-      user_id: user,
+      user_id: "1234567",
       coordinates: [-75.546518086577947, 45.467134581917357],
-      img: image,
-      date: date,
+      img: "image",
+      date: "21-02-2023",
     },
   ];
   return (
-    <div style={{ width: "300px", height: "300px" }}>
-      const [Hover, setHover] = useState(null);
+    <div style={{ width: "100%", height: "300px" }}>
       <MapContainer center={[45.4, -75.7]} zoom={12} scrollWheelZoom={false}>
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -25,7 +25,6 @@ const Map = () => {
             onClick={() => {
               setHover(key);
             }}
-            icon={icon}
           />
         ))}
         {Hover && (
@@ -37,12 +36,11 @@ const Map = () => {
           >
             <div>
               <h2>{Hover.name}</h2>
-              <p>{Hove.date}</p>
+              <p>{Hover.date}</p>
             </div>
           </Popup>
         )}
       </MapContainer>
-      );
     </div>
   );
 };

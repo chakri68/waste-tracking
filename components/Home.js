@@ -5,7 +5,11 @@ import { Avatar } from "primereact/avatar";
 import { InputTextarea } from "primereact/inputtextarea";
 import { Dialog } from "primereact/dialog";
 import NavBar from "./NavBar";
-import Map from "./Map";
+import dynamic from "next/dynamic";
+
+const DynamicMap = dynamic(() => import("./Map"), {
+  ssr: false,
+});
 
 const Main = () => {
   // Required
@@ -137,7 +141,7 @@ const Main = () => {
           style={{ height: "350px" }}
           className="border-2 border-dashed border-300"
         >
-          <Map />
+          <DynamicMap />
         </div>
       </div>
       {/* Map End */}
