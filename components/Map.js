@@ -3,12 +3,14 @@ import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 
 const Map = () => {
   const [Hover, setHover] = useState(null);
+  console.log(Hover);
   const data = [
     {
       user_id: "1234567",
       coordinates: [-75.546518086577947, 45.467134581917357],
       img: "image",
       date: "21-02-2023",
+      name: "chaitanya",
     },
   ];
   return (
