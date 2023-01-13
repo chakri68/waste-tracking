@@ -5,12 +5,12 @@ import { InputTextarea } from "primereact/inputtextarea";
 import { Dialog } from "primereact/dialog";
 import NavBar from "./NavBar";
 import dynamic from "next/dynamic";
-import Map from "./Map";
+
+const DynamicMap = dynamic(() => import("./Map"), {
+  ssr: false,
+});
 
 const About = () => {
-  const DynamicMap = dynamic(() => import("./Map"), {
-    ssr: false,
-  });
   // Required
   const [displayResponsive, setDisplayResponsive] = useState(false);
   const [description, setdescription] = useState("");
