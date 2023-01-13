@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button } from "primereact/button";
 import { Accordion, AccordionTab } from "primereact/accordion";
+import NavBar from "./NavBar";
 
 const ReportForm = () => {
   const [activeIndex, setActiveIndex] = useState(null);
@@ -24,22 +25,24 @@ const ReportForm = () => {
 
   return (
     <div>
-      <div className="surface-0 text-700 text-center">
+      <div>
+        <NavBar />
+      </div>
+      <div className="surface-0 text-700 text-center  pt-8">
         <div className="text-blue-600 font-bold mb-3">
           <img src="./sucess.gif" style={{ height: "350px" }} />
         </div>
         <div className="text-900 font-bold text-5xl mb-3">
           Thanks for filling the Form
         </div>
-        <div className="text-700 text-2xl mb-5">Need Immidiate action?</div>
+        <div className="text-700 text-2xl mb-3">Need Immidiate action?</div>
         <Button
           label="Mail"
           icon="pi pi-send"
-          className="font-bold px-5 py-3 p-button-raised p-button-rounded white-space-nowrap"
+          className="font-bold px-5 mb-3 py-3 p-button-raised p-button-rounded white-space-nowrap"
         />
         <br />
-        <br />
-        <br />
+
         <div style={{ display: "flex", justifyContent: "center" }}>
           <Accordion activeIndex={0} style={{ width: "60vw" }}>
             <AccordionTab

@@ -6,6 +6,8 @@ import { InputTextarea } from "primereact/inputtextarea";
 import { Dialog } from "primereact/dialog";
 import NavBar from "./NavBar";
 import dynamic from "next/dynamic";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 const DynamicMap = dynamic(() => import("./Map"), {
   ssr: false,
@@ -27,7 +29,7 @@ const Main = () => {
       setPosition(position);
     }
   };
-
+  const router = useRouter();
   const onHide = (name) => {
     dialogFuncMap[`${name}`](false);
   };
@@ -132,7 +134,9 @@ const Main = () => {
           </div>
           <Button
             label="Report to us"
-            herf="http://localhost:3000/report"
+            onClick={() => {
+              router.push("/report");
+            }}
             className="font-bold px-5 py-3 p-button-raised p-button-rounded white-space-nowrap"
           />
         </div>

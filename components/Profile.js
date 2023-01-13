@@ -53,20 +53,20 @@ const Profile = () => {
         </div>
       </div>
       <div
-        className="text-900 font-bold text-5xl mb-3 text-center"
+        className="text-900 font-bold text-5xl mb-3 p-5 text-center"
         style={{ marginTop: "20px" }}
       >
-        Your Reaquests
+        User Complaints
       </div>
       <div className="items">
         <div
           style={{ height: "50vh" }}
-          className="border-2 border-dashed border-300 border-round-lg"
+          className="border-2 border-dashed p-5 border-300 border-round-lg"
         >
           <UserRequest />
         </div>
-
         <Paginator
+          className="p-5"
           first={basicFirst}
           rows={basicRows}
           totalRecords={120}

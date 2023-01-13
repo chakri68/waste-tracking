@@ -8,6 +8,7 @@ import Form from "../components/Form";
 import Login from "../components/Login";
 import Profile from "../components/Profile";
 import About from "../components/About";
+import ReportForm from "../components/ReportForm";
 // import "primeflex@3.2.1/primeflex.min.css";
 // {
 //   <link

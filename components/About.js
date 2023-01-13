@@ -6,14 +6,16 @@ import { Dialog } from "primereact/dialog";
 import NavBar from "./NavBar";
 import dynamic from "next/dynamic";
 
-const DynamicMap = dynamic(() => import("./Map"), {
+const DynamicMap = dynamic(() => import("./VolunteerMap"), {
   ssr: false,
 });
 
 const About = () => {
   // Required
   const [displayResponsive, setDisplayResponsive] = useState(false);
-  const [description, setdescription] = useState("");
+  const [description1, setdescription1] = useState("");
+  const [description2, setdescription2] = useState("");
+  const [name, setname] = useState("");
   // End
 
   const dialogFuncMap = {
@@ -73,16 +75,16 @@ const About = () => {
             style={{ height: "600px" }}
           >
             <img
-              src="./waste.webp"
+              src="./Organizer.jpg"
               alt="hero-1"
               className="md:ml-auto block md:h-full"
-              style={{ height: "200px" }}
+              style={{ height: "200px", scale: "0.8" }}
             />
           </div>
           <div className="col-12 md:col-6 p-6 text-center md:text-left flex align-items-center">
             <div className="surface-0 text-700 text-center">
               <div className="text-900 font-bold text-5xl mb-3">
-                Join Our Volenteer Program
+                Want to become an organizer?
               </div>
               <div className="text-700 text-2xl mb-5">
                 Be the change you wish to see in the world - Join our waste
@@ -90,7 +92,7 @@ const About = () => {
               </div>
               {/* Volunteer Form */}
               <Button
-                label="Join Now"
+                label="Apply Now!"
                 onClick={() => onClick("displayResponsive")}
                 className="font-bold px-5 py-3 p-button-raised p-button-rounded white-space-nowrap"
               />
@@ -104,7 +106,7 @@ const About = () => {
                 <div className="flex align-items-center justify-content-center">
                   <div className="text-center mb-3">
                     <img
-                      src="../Organizer.jpg"
+                      src="./logo1.png"
                       alt="hyper"
                       height={100}
                       className="mb-3"
@@ -123,6 +125,8 @@ const About = () => {
                       <InputText
                         id="name"
                         type="text"
+                        value={name}
+                        onChange={(e) => setname(e.target.value)}
                         placeholder="Enter Name"
                         className="w-full mb-3"
                       />
@@ -131,15 +135,29 @@ const About = () => {
                         htmlFor="text"
                         className="block text-900 font-medium mb-2"
                       >
-                        Why you want to bocome a volunteer?
+                        Why you want to bocome an Organizer?
                       </label>
 
                       <InputTextarea
                         rows={5}
                         cols={60}
                         placeholder="Enter here ........."
-                        value={description}
-                        onChange={(e) => setdescription(e.target.value)}
+                        value={description1}
+                        onChange={(e) => setdescription1(e.target.value)}
+                      />
+                      <label
+                        htmlFor="text"
+                        className="block text-900 font-medium mb-2"
+                      >
+                        Any Past experiance?
+                      </label>
+
+                      <InputTextarea
+                        rows={5}
+                        cols={60}
+                        placeholder="Enter here ........."
+                        value={description2}
+                        onChange={(e) => setdescription2(e.target.value)}
                       />
 
                       <br />
