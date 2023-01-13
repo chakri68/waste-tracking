@@ -111,11 +111,14 @@ export default async function handler(req, res) {
       });
     } catch (error) {
       console.log("Caught Error ", error);
-      res.status(500).json({ error, result: null });
+      res.status(500).json({ ok: false, result: null, message: error });
     }
   } else {
     res
       .status(400)
-      .json({ message: "No api endpoint found for the request type" });
+      .json({
+        ok: false,
+        message: "No api endpoint found for the request type",
+      });
   }
 }
