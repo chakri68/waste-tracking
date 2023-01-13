@@ -52,7 +52,7 @@ const NavBar = () => {
         popup
         ref={menu}
         id="popup_menu"
-        style={{ zIndex: "1000" }}
+        style={{ zIndex: "1000", marginTop: "15px" }}
       />{" "}
       <Avatar
         icon="pi pi-user"
@@ -75,7 +75,7 @@ const NavBar = () => {
           height: "80px",
           position: "fixed",
           width: "100vw",
-          zIndex: "1000",
+          zIndex: "100000",
         }}
       />
     </div>

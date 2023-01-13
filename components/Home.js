@@ -174,29 +174,30 @@ const Main = () => {
               className="font-bold px-5 py-3 p-button-raised p-button-rounded white-space-nowrap"
             />
             <Dialog
+              className="pt-6"
               visible={displayResponsive}
               onHide={() => onHide("displayResponsive")}
-              breakpoints={{ "960px": "75vw" }}
-              style={{ width: "50vw" }}
+              // breakpoints={{ "960px": "75vw" }}
+              style={{ width: "50vw", zIndex: "10000000", height: "100vh" }}
             >
               <div className="flex align-items-center justify-content-center">
-                <div className="text-center mb-5">
+                <div className="text-center mb-3">
                   <img
                     src="./logo1.png"
                     alt="hyper"
-                    height={120}
+                    height={100}
                     className="mb-3"
                   />
-                  <div className="text-900 text-3xl font-medium mb-3">
+                  <div className="text-900 text-3xl font-medium mb-1">
                     Volunteer Form
                   </div>
 
-                  <div style={{ padding: "30px" }}>
+                  <div>
                     <label
                       htmlFor="text"
-                      className="block text-900 font-medium mb-2"
+                      className="block text-900 font-medium mb-1"
                     >
-                      Preffered Name
+                      Prefered Name
                     </label>
                     <InputText
                       id="name"
@@ -215,6 +216,7 @@ const Main = () => {
                     <InputTextarea
                       rows={5}
                       cols={60}
+                      placeholder="Enter here ........."
                       value={description}
                       onChange={(e) => setdescription(e.target.value)}
                     />

@@ -278,6 +278,7 @@ const Form = ({ submitCallback }) => {
               Address
             </label>
             <InputTextarea
+              placeholder="Enter here ........."
               rows={3}
               cols={106}
               value={Address}
@@ -293,6 +294,7 @@ const Form = ({ submitCallback }) => {
             </label>
             <InputTextarea
               rows={5}
+              placeholder="Enter here ........."
               cols={106}
               value={Description}
               onChange={(e) => setDescription(e.target.value)}
