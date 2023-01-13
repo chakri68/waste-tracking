@@ -7,7 +7,12 @@ const VolunteerMap = () => {
   const [data, setdata] = useState([
     {
       user_id: "1234567",
-      coordinates: [-75.546518086577947, 45.467134581917357],
+      coordinates: [16.0533, 80.684],
+      name: "chaitanya",
+    },
+    {
+      user_id: "1234567",
+      coordinates: [16.0686, 80.5482],
       name: "chaitanya",
     },
   ]);
