@@ -4,7 +4,41 @@ import { Accordion, AccordionTab } from "primereact/accordion";
 import NavBar from "./NavBar";
 
 const ReportForm = ({ reportData }) => {
+  const mailConfig = {
+    baseMail: "csr-ghmc@telangana.gov.in",
+    subject: "Public littering complaint",
+  };
+
+  const [loading, setLoading] = useState(false);
   const [activeIndex, setActiveIndex] = useState(null);
+  // const [mailData, setMailData] = useState(null);
+
+  async function handleMailGen() {
+    console.log({ reportData });
+    setLoading(true);
+    let res = await fetch("/api/openai", {
+      method: "POST",
+      body: JSON.stringify({
+        location: reportData.report.address,
+        description: reportData.report.description,
+        date: reportData.report.sinceDate,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    let data = await res.json();
+    console.log({ mailData: data });
+    if (data.ok) {
+      // setMailData(data.result.mailBody);
+      console.log;
+      window.open(
+        `mailto:${mailConfig.baseMail}?subject=${mailConfig.subject}&body=${data.result.choices[0].text}`,
+        "_blank"
+      );
+    }
+    setLoading(false);
+  }
 
   const onClick = (itemIndex) => {
     let _activeIndex = activeIndex ? [...activeIndex] : [];
@@ -34,6 +68,8 @@ const ReportForm = ({ reportData }) => {
         </div>
         <div className="text-700 text-2xl mb-3">Need Immidiate action?</div>
         <Button
+          onClick={handleMailGen}
+          loading={loading}
           label="Mail"
           icon="pi pi-send"
           className="font-bold px-5 mb-3 py-3 p-button-raised p-button-rounded white-space-nowrap"

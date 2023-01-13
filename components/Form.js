@@ -52,8 +52,7 @@ const Form = ({ submitCallback }) => {
       body: formData,
     });
     let data = await res.json();
-    console.log({ data });
-    if (data.result) {
+    if (data.ok) {
       submitCallback(data.result);
     }
     setLoading(false);

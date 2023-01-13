@@ -7,7 +7,7 @@ import { Button } from "primereact/button";
 export default function Report() {
   let [success, setSuccess] = useState(false);
   let [reportData, setReportData] = useState(null);
-  const [Display, setDisplay] = useState(true);
+  // const [Display, setDisplay] = useState(true);
 
   return (
     <>
@@ -26,13 +26,14 @@ export default function Report() {
       /> */}
       <Dialog
         className="mt-3"
-        visible={Display}
+        visible={success ? true : false}
         style={{ width: "60vw", height: "90vh" }}
         onHide={() => {
-          setDisplay(false);
+          // setDisplay(false);
+          setSuccess(false);
         }}
       >
-        <ReportForm />
+        <ReportForm reportData={reportData} />
       </Dialog>
 
       {success ? <ReportForm reportData={reportData} /> : ""}
