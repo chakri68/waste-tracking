@@ -19,7 +19,7 @@ const Map = () => {
   const [data, setdata] = useState([
     {
       geoLocation: { lat: -75.546518086577947, long: 45.467134581917357 },
-      date: "12 - 3 - 23",
+      sinceDate: "12 - 3 - 23",
       imageURL: "./logo1",
     },
   ]);
@@ -87,11 +87,11 @@ const Map = () => {
               <p style={{ textAlign: "center", fontSize: "1rem" }}>
                 <strong>Since :</strong>
                 {""}
-                {Hover.date}
+                {Hover.sinceDate}
               </p>
               <img
-                src="./Waste.webp"
-                style={{ height: "100px", width: "130px" }}
+                src={Hover.imageURL}
+                style={{ height: "100px", width: "100%", objectFit: "contain" }}
               />
             </div>
           </Popup>
