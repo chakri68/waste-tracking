@@ -31,12 +31,16 @@ export default function Login() {
       swal({
         text: "Successfully Logged in",
         icon: "success",
+        buttons: false,
+        timer: 2000,
       });
       router.push(res.url);
     } else {
       swal({
         text: "Wrong Credentials",
         icon: "error",
+        buttons: false,
+        timer: 2000,
       });
     }
   };
