@@ -53,6 +53,9 @@ const Form = ({ submitCallback }) => {
     });
     let data = await res.json();
     console.log({ data });
+    if (data.result) {
+      submitCallback(data.result);
+    }
     setLoading(false);
   }
 

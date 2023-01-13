@@ -3,7 +3,7 @@ import { Button } from "primereact/button";
 import { Accordion, AccordionTab } from "primereact/accordion";
 import NavBar from "./NavBar";
 
-const ReportForm = () => {
+const ReportForm = ({ reportData }) => {
   const [activeIndex, setActiveIndex] = useState(null);
 
   const onClick = (itemIndex) => {

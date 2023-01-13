@@ -4,10 +4,16 @@ import Form from "../../components/Form";
 
 export default function Report() {
   let [success, setSuccess] = useState(false);
+  let [reportData, setReportData] = useState(null);
   return (
     <>
-      <Form />
-      {success ? <ReportForm /> : ""}
+      <Form
+        submitCallback={(data) => {
+          setSuccess(true);
+          setReportData(data);
+        }}
+      />
+      {success ? <ReportForm reportData={reportData} /> : ""}
     </>
   );
 }
