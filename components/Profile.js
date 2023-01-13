@@ -1,9 +1,33 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Paginator } from "primereact/paginator";
 import UserRequest from "./UserRequest";
 import NavBar from "./NavBar";
+import { Card } from "primereact/card";
 
 const Profile = () => {
+  const [data, setdata] = useState([]);
+  useEffect(() => {
+    // Api fetch
+    fetch(`/api/reports`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+    })
+      .then((response) => response.json())
+      .then((actualData) => {
+        if (actualData.ok) {
+          let allReports = [];
+          for (let reports of actualData.result) {
+            if (reports?.reports) allReports.push(...reports.reports);
+          }
+          console.log({ data: allReports });
+          setdata(allReports);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   const [basicFirst, setBasicFirst] = useState(0);
   const [basicRows, setBasicRows] = useState(10);
   const onBasicPageChange = (event) => {
@@ -18,12 +42,12 @@ const Profile = () => {
       <div className="grid grid-nogutter surface-0 text-800 pt-5">
         <div className="col-12 md:col-6 overflow-hidden flex align-items-center">
           <img
-            src="./av-5.png"
+            src="./avatar.png"
             alt="hero-1"
             className="md:ml-auto block md:h-full"
             style={{
               clipPath: "polygon(8% 0, 100% 0%, 100% 100%, 0 100%)",
-              scale: "0.8",
+              scale: "0.7",
             }}
           />
         </div>
@@ -63,7 +87,21 @@ const Profile = () => {
           style={{ height: "50vh" }}
           className="border-2 border-dashed p-5 border-300 border-round-lg"
         >
-          <UserRequest />
+          <Card style={{ display: "inline", justifyContent: "center" }}>
+            <img
+              src="./clean.jpg"
+              alt="hero-1"
+              className="md:ml-auto block md:h-full"
+              style={{
+                borderRadius: "700px",
+                width: "250px",
+              }}
+            />{" "}
+            <br />
+            <div className="text-blue-600 font-bold mb-3">
+              Status : pending Date: date
+            </div>
+          </Card>
         </div>
         <Paginator
           className="p-5"

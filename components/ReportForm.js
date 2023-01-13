@@ -25,14 +25,11 @@ const ReportForm = ({ reportData }) => {
 
   return (
     <div>
-      <div>
-        <NavBar />
-      </div>
-      <div className="surface-0 text-700 text-center  pt-8">
-        <div className="text-blue-600 font-bold mb-3">
-          <img src="./sucess.gif" style={{ height: "350px" }} />
+      <div className="surface-0 text-700 text-center  pt-0">
+        <div className="text-blue-600 font-bold mb-0">
+          <img src="./sucess.gif" style={{ height: "320px" }} />
         </div>
-        <div className="text-900 font-bold text-5xl mb-3">
+        <div className="text-900 font-bold text-5xl mb-2">
           Thanks for filling the Form
         </div>
         <div className="text-700 text-2xl mb-3">Need Immidiate action?</div>
@@ -54,20 +51,13 @@ const ReportForm = ({ reportData }) => {
               }
             >
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum.
+                By clicking the button above, you will be redirected to the
+                Gmail application and an email will be automatically generated
+                with all the details mentioned in the previous form.
               </p>
             </AccordionTab>
           </Accordion>
         </div>
-        <br />
-        <br />
-        <br />
       </div>
     </div>
   );

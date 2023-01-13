@@ -11,27 +11,27 @@ const VolunteerMap = () => {
       name: "chaitanya",
     },
   ]);
-  useEffect(() => {
-    // Geo Location
-    navigator.geolocation.getCurrentPosition(function (position) {
-      setlat(position.coords.latitude);
-      setlong(position.coords.longitude);
-    });
-    // Api Fetch
-    fetch(`https://jsonplaceholder.typicode.com/posts`)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(
-            `This is an HTTP error: The status is ${response.status}`
-          );
-        }
-        return response.json();
-      })
-      .then((actualData) => setdata(actualData))
-      .catch((err) => {
-        console.log(err.message);
-      });
-  }, []);
+  // useEffect(() => {
+  //   // Geo Location
+  //   navigator.geolocation.getCurrentPosition(function (position) {
+  //     setlat(position.coords.latitude);
+  //     setlong(position.coords.longitude);
+  //   });
+  //   // Api Fetch
+  //   fetch(`https://jsonplaceholder.typicode.com/posts`)
+  //     .then((response) => {
+  //       if (!response.ok) {
+  //         throw new Error(
+  //           `This is an HTTP error: The status is ${response.status}`
+  //         );
+  //       }
+  //       return response.json();
+  //     })
+  //     .then((actualData) => setdata(actualData))
+  //     .catch((err) => {
+  //       console.log(err.message);
+  //     });
+  // }, []);
   const [Hover, setHover] = useState(null);
   console.log(Hover);
   return (

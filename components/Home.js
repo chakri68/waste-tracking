@@ -130,7 +130,7 @@ const Main = () => {
       <div className="surface-0 p-8 shadow-2 border-round pt-5 pb-3">
         <div className="surface-0 text-700 text-center">
           <div className="text-900 font-bold text-5xl pt-3 mb-3">
-            Spot waste near you?
+            Spot litter near you?
           </div>
           <Button
             label="Report to us"

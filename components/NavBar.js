@@ -10,7 +10,21 @@ const NavBar = () => {
   const session = useSession();
 
   const menu = useRef(null);
-  const items = [{ label: " " }, { label: "Home" }, { label: "Faqs" }];
+  const items = [
+    { label: " " },
+    {
+      label: "Home",
+      command: () => {
+        router.push("/");
+      },
+    },
+    {
+      label: "About",
+      command: () => {
+        router.push("/about");
+      },
+    },
+  ];
   const menuitems = [
     {
       label: session.status === "authenticated" ? "Logout" : "Login",
@@ -49,7 +63,7 @@ const NavBar = () => {
         <a
           href="http://localhost:3000/"
           className="no-underline  mb-3 text-justify text-500 cursor-pointer"
-          style={{ fontSize: "1.5rem", marginTop: "23px" }}
+          style={{ fontSize: "1.5rem", marginTop: "23px", fontWeight: "600" }}
         >
           Go Clean
         </a>

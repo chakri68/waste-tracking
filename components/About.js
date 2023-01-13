@@ -78,7 +78,7 @@ const About = () => {
               src="./Organizer.jpg"
               alt="hero-1"
               className="md:ml-auto block md:h-full"
-              style={{ height: "200px", scale: "0.8" }}
+              style={{ width: "50vw", scale: "0.8" }}
             />
           </div>
           <div className="col-12 md:col-6 p-6 text-center md:text-left flex align-items-center">
@@ -97,7 +97,7 @@ const About = () => {
                 className="font-bold px-5 py-3 p-button-raised p-button-rounded white-space-nowrap"
               />
               <Dialog
-                className="pt-6"
+                className="pt-0"
                 visible={displayResponsive}
                 onHide={() => onHide("displayResponsive")}
                 // breakpoints={{ "960px": "75vw" }}
@@ -108,11 +108,11 @@ const About = () => {
                     <img
                       src="./logo1.png"
                       alt="hyper"
-                      height={100}
+                      height={120}
                       className="mb-3"
                     />
                     <div className="text-900 text-3xl font-medium mb-1">
-                      Volunteer Form
+                      Organizer Form
                     </div>
 
                     <div>
