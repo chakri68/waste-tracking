@@ -35,8 +35,16 @@ const Map = () => {
             }}
           >
             <div>
-              <h2>{Hover.name}</h2>
-              <p>{Hover.date}</p>
+              {/* <h4>{Hover.name}</h4> */}
+              <p style={{ textAlign: "center", fontSize: "1rem" }}>
+                <strong>Since :</strong>
+                {""}
+                {Hover.date}
+              </p>
+              <img
+                src="./Waste.webp"
+                style={{ height: "100px", width: "130px" }}
+              />
             </div>
           </Popup>
         )}

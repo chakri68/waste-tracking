@@ -7,6 +7,7 @@ import Main from "../components/Home";
 import Form from "../components/Form";
 import Login from "../components/Login";
 import Profile from "../components/Profile";
+import About from "../components/About";
 // import "primeflex@3.2.1/primeflex.min.css";
 // {
 //   <link
@@ -21,6 +22,7 @@ export default function Home() {
   return (
     <>
       <Main />
+      {/* <About /> */}
       {/* <Form /> */}
       {/* <Profile /> */}
       {/* <Login /> */}
