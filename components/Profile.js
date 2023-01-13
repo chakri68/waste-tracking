@@ -3,10 +3,30 @@ import { Paginator } from "primereact/paginator";
 import UserRequest from "./UserRequest";
 import NavBar from "./NavBar";
 import { Card } from "primereact/card";
+import { useSession } from "next-auth/react";
 
 const Profile = () => {
+  const session = useSession();
   const [data, setdata] = useState([]);
-  const [reportdata, setreportdata] = useState([]);
+  const [reportdata, setReportdata] = useState([]);
+
+  useEffect(() => {
+    if (session.status === "authenticated") {
+      fetch("/api/reports", {
+        method: "POST",
+        body: JSON.stringify({
+          usernames: [session.data.user.username],
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setReportdata(data.result[0].reports);
+        });
+    }
+  }, []);
 
   const [basicFirst, setBasicFirst] = useState(0);
   const [basicRows, setBasicRows] = useState(10);

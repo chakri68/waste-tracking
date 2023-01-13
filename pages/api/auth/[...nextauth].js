@@ -51,6 +51,13 @@ export default async function auth(req, res) {
       }
       return token;
     },
+    async session({ session, token, user }) {
+      // Send properties to the client, like an access_token and user id from a provider.
+      session.accessToken = token.accessToken;
+      session.user = token.user;
+
+      return session;
+    },
   };
 
   return await NextAuth(req, res, {
