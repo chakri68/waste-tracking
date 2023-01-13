@@ -6,27 +6,7 @@ import { Card } from "primereact/card";
 
 const Profile = () => {
   const [data, setdata] = useState([]);
-  useEffect(() => {
-    // Api fetch
-    fetch(`/api/reports`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-    })
-      .then((response) => response.json())
-      .then((actualData) => {
-        if (actualData.ok) {
-          let allReports = [];
-          for (let reports of actualData.result) {
-            if (reports?.reports) allReports.push(...reports.reports);
-          }
-          console.log({ data: allReports });
-          setdata(allReports);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+  const [reportdata, setreportdata] = useState([]);
 
   const [basicFirst, setBasicFirst] = useState(0);
   const [basicRows, setBasicRows] = useState(10);
@@ -59,13 +39,10 @@ const Profile = () => {
             </div>
             <div className="mb-3 text-center">
               <span className="block text-2xl mb-1">
-                <strong>Name:</strong> John Doe
-              </span>
-              <span className="block text-2xl mb-1">
-                <strong>Location:</strong> losagels
+                <strong>Name:</strong>
               </span>
               <span className="block text-2xl  mb-1">
-                <strong>Email:</strong> johndoe@example.com
+                <strong>Email:</strong> chaitanya.tata215@gmail.com
               </span>
 
               <span className="block text-2xl  mb-1">
@@ -84,24 +61,49 @@ const Profile = () => {
       </div>
       <div className="items">
         <div
-          style={{ height: "50vh" }}
           className="border-2 border-dashed p-5 border-300 border-round-lg"
+          style={{
+            height: "300px",
+            boxShadow: "box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;",
+            margin: "40px",
+          }}
         >
-          <Card style={{ display: "inline", justifyContent: "center" }}>
-            <img
-              src="./clean.jpg"
-              alt="hero-1"
-              className="md:ml-auto block md:h-full"
-              style={{
-                borderRadius: "700px",
-                width: "250px",
-              }}
-            />{" "}
-            <br />
-            <div className="text-blue-600 font-bold mb-3">
-              Status : pending Date: date
+          <div
+            className="grid grid-nogutter surface-0 text-800"
+            style={{ height: "300px" }}
+          >
+            <div
+              className="col-12 md:col-6 overflow-hidden"
+              style={{ height: "300px" }}
+            >
+              <img
+                src="./waste.webp"
+                alt="hero-1"
+                className="md:ml-auto block md:"
+                style={{ height: "300px", width: "340px" }}
+              />
             </div>
-          </Card>
+
+            <div
+              className="col-12 md:col-6 p-6 text-center md:text-left flex align-items-center"
+              style={{
+                height: "300px",
+                padding: "40px",
+              }}
+            >
+              <div className="surface-0 text-700 text-center">
+                <div className="text-900 font-bold text-4xl mb-1">Status</div>
+                <h5 style={{ color: "orange" }}>Pending</h5>
+                <div className="text-900 font-bold text-3xl mb-1">
+                  Description
+                </div>
+                <div className="text-700 text-1xl mb-5">
+                  Be the change you wish to see in the world - Join our waste
+                  management team as a volunteer today!
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <Paginator
           className="p-5"
