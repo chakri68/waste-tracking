@@ -5,11 +5,17 @@ import {
   Popup,
   TileLayer,
   ZoomControl,
+  useMap,
 } from "react-leaflet";
 
+function MapController({ center, zoom = 12 }) {
+  const map = useMap();
+  map.setView(center, zoom);
+}
+
 const Map = () => {
-  const [lat, setlat] = useState(null);
-  const [long, setlong] = useState(null);
+  const [lat, setlat] = useState(51.505);
+  const [long, setlong] = useState(-0.09);
   const [data, setdata] = useState([
     {
       geoLocation: { lat: -75.546518086577947, long: 45.467134581917357 },
@@ -48,12 +54,8 @@ const Map = () => {
 
   return (
     <div style={{ width: "100%", height: "300px" }}>
-      <MapContainer
-        center={lat && long ? [lat, long] : undefined}
-        zoom={12}
-        zoomControl={false}
-        scrollWheelZoom={false}
-      >
+      <MapContainer zoom={12} zoomControl={false} scrollWheelZoom={false}>
+        <MapController center={[lat, long]} />
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
