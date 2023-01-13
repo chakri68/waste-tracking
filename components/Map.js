@@ -22,9 +22,7 @@ const Map = () => {
           <Marker
             key={key.user_id}
             position={[key.coordinates[1], key.coordinates[0]]}
-            onClick={() => {
-              setHover(key);
-            }}
+            eventHandlers={{ click: () => setHover(key) }}
           />
         ))}
         {Hover && (
