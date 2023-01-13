@@ -2,31 +2,42 @@ import React, { useRef } from "react";
 import { Menu } from "primereact/menu";
 import { Avatar } from "primereact/avatar";
 import { Menubar } from "primereact/menubar";
+import { useRouter } from "next/router";
+import { signOut, useSession } from "next-auth/react";
 
 const NavBar = () => {
+  const router = useRouter();
+  const session = useSession();
+
   const menu = useRef(null);
   const items = [{ label: " " }, { label: "Home" }, { label: "Faqs" }];
   const menuitems = [
-    { label: "Logout", icon: "pi pi-fw pi-power-off" },
     {
-      label: "Home",
-      icon: "pi pi-fw pi-home",
-      command: (e) => {
-        window.location.hash = "";
+      label: session.status === "authenticated" ? "Logout" : "Login",
+      icon:
+        session.status === "authenticated"
+          ? "pi pi-fw pi-power-off"
+          : "pi pi-fw pi-sign-in",
+      command: () => {
+        if (session.status === "authenticated") {
+          signOut();
+        } else {
+          router.push("/login");
+        }
       },
     },
     {
-      label: "Login",
-      icon: "pi pi-fw pi-sign-in",
-      command: (e) => {
-        window.location.hash = "login";
+      label: "Home",
+      icon: "pi pi-fw pi-home",
+      command: () => {
+        router.push("/");
       },
     },
     {
       label: "Profile",
       icon: "pi pi-fw pi-user",
-      command: (e) => {
-        window.location.hash = "profile";
+      command: () => {
+        router.push("/profile");
       },
     },
   ];
