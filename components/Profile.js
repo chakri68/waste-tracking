@@ -59,7 +59,7 @@ const Profile = () => {
             </div>
             <div className="mb-3 text-center">
               <span className="block text-2xl mb-1">
-                <strong>Name:</strong>
+                <strong>Name:</strong>test
               </span>
               <span className="block text-2xl  mb-1">
                 <strong>Email:</strong> chaitanya.tata215@gmail.com
@@ -97,7 +97,7 @@ const Profile = () => {
               style={{ height: "300px" }}
             >
               <img
-                src="./waste.webp"
+                src="./p-3.jpeg"
                 alt="hero-1"
                 className="md:ml-auto block md:"
                 style={{ height: "300px", width: "340px" }}
@@ -118,8 +118,7 @@ const Profile = () => {
                   Description
                 </div>
                 <div className="text-700 text-1xl mb-5">
-                  Be the change you wish to see in the world - Join our waste
-                  management team as a volunteer today!
+                  Your report is sucussfully submitted waiting for response
                 </div>
               </div>
             </div>

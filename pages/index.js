@@ -9,6 +9,9 @@ import Login from "../components/Login";
 import Profile from "../components/Profile";
 import About from "../components/About";
 import ReportForm from "../components/ReportForm";
+import OrgMain from "../components/Organizer/OrgMain";
+import OrgReports from "../components/Organizer/OrgReports";
+import OrgReportStats from "../components/Organizer/OrgReportStat";
 // import "primeflex@3.2.1/primeflex.min.css";
 // {
 //   <link
@@ -23,6 +26,9 @@ export default function Home() {
   return (
     <>
       <Main />
+      {/* <OrgMain /> */}
+      {/* <OrgReports /> */}
+      {/* <OrgReportStats /> */}
       {/* <About /> */}
       {/* <Form /> */}
       {/* <Profile /> */}
