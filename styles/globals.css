@@ -3,6 +3,17 @@
   height: 350px;
 }
 
+.infoContainer{
+  background-image: url("../public/bg-1.png");
+  background-repeat: no-repeat;
+  background-position: -2% 50%;
+  background-size: 300px;
+}
+#profile{
+  /* background-image: url("../public/Border.png"); */
+  background-repeat: no-repeat;
+  background-size: contain;
+}
 /* Product View Css */
 
 .dataview-demo .p-dropdown {

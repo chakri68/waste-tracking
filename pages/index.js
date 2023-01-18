@@ -12,6 +12,7 @@ import ReportForm from "../components/ReportForm";
 import OrgMain from "../components/Organizer/OrgMain";
 import OrgReports from "../components/Organizer/OrgReports";
 import OrgReportStats from "../components/Organizer/OrgReportStat";
+import Find from "../components/Find";
 // import "primeflex@3.2.1/primeflex.min.css";
 // {
 //   <link
@@ -25,7 +26,8 @@ const inter = Inter({ subsets: ["latin"] });
 export default function Home() {
   return (
     <>
-      <Main />
+      {/* <Main /> */}
+      <Find />
       {/* <OrgMain /> */}
       {/* <OrgReports /> */}
       {/* <OrgReportStats /> */}

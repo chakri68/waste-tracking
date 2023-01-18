@@ -24,6 +24,12 @@ const NavBar = () => {
         router.push("/about");
       },
     },
+    {
+      label: "Find",
+      command: () => {
+        router.push("/about");
+      },
+    },
   ];
   const menuitems = [
     {

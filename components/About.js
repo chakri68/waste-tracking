@@ -88,7 +88,7 @@ const About = () => {
               </div>
               <div className="text-700 text-2xl mb-5">
                 Be the change you wish to see in the world - Join our waste
-                management team as a volunteer today!
+                management team as a Organizer today!
               </div>
               {/* Volunteer Form */}
               <Button

@@ -39,7 +39,7 @@ const Profile = () => {
       <div>
         <NavBar />
       </div>
-      <div className="grid grid-nogutter surface-0 text-800 pt-5">
+      <div className="grid grid-nogutter surface-0 text-800 pt-5" id="profile">
         <div className="col-12 md:col-6 overflow-hidden flex align-items-center">
           <img
             src="./avatar.png"
@@ -63,6 +63,9 @@ const Profile = () => {
               </span>
               <span className="block text-2xl  mb-1">
                 <strong>Email:</strong> chaitanya.tata215@gmail.com
+              </span>
+              <span className="block text-2xl  mb-1">
+                <strong>Role:</strong> ____
               </span>
 
               <span className="block text-2xl  mb-1">
