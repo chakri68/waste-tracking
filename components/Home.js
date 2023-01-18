@@ -16,7 +16,8 @@ const DynamicMap = dynamic(() => import("./Map"), {
 const Main = () => {
   // Required
   const [displayResponsive, setDisplayResponsive] = useState(false);
-  const [description, setdescription] = useState("");
+  const [Description, setDescription] = useState("");
+  const [Reason, setReason] = useState("");
   // End
 
   const dialogFuncMap = {
@@ -191,7 +192,7 @@ const Main = () => {
                     height={100}
                     className="mb-3"
                   />
-                  <div className="text-900 text-3xl font-medium mb-1">
+                  <div className="text-900 text-3xl font-medium mb-3">
                     Volunteer Form
                   </div>
 
@@ -200,28 +201,29 @@ const Main = () => {
                       htmlFor="text"
                       className="block text-900 font-medium mb-1"
                     >
-                      Prefered Name
+                      Why you want to apply as volunteer?
                     </label>
-                    <InputText
-                      id="name"
-                      type="text"
-                      placeholder="Enter Name"
-                      className="w-full mb-3"
+                    <InputTextarea
+                      rows={4}
+                      cols={60}
+                      placeholder="Enter here........"
+                      value={Reason}
+                      onChange={(e) => setReason(e.target.value)}
                     />
 
                     <label
                       htmlFor="text"
                       className="block text-900 font-medium mb-2"
                     >
-                      Why you want to bocome a volunteer?
+                      What do you want to Contribute as a volunteer?
                     </label>
 
                     <InputTextarea
-                      rows={5}
+                      rows={4}
                       cols={60}
                       placeholder="Enter here ........."
-                      value={description}
-                      onChange={(e) => setdescription(e.target.value)}
+                      value={Description}
+                      onChange={(e) => setDescription(e.target.value)}
                     />
 
                     <br />
