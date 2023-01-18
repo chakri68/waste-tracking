@@ -18,6 +18,7 @@ const Main = () => {
   const [displayResponsive, setDisplayResponsive] = useState(false);
   const [Description, setDescription] = useState("");
   const [Reason, setReason] = useState("");
+  const [volunteeringFormLoading, setVolunteerFormLoading] = useState(false);
   // End
 
   const dialogFuncMap = {
@@ -31,9 +32,32 @@ const Main = () => {
     }
   };
   const router = useRouter();
+  const session = useSession();
   const onHide = (name) => {
     dialogFuncMap[`${name}`](false);
   };
+
+  async function handleVolunteerFormSubmit() {
+    console.log("CLICK");
+    setVolunteerFormLoading(true);
+    let res = await fetch("/api/upload/volunteer", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        username: session?.data?.user?.username,
+        desc1: Reason,
+        desc2: Description,
+        uploadTime: Date.now(),
+        geoLocation: {
+          lat,
+          long,
+        },
+      }),
+    });
+    let data = await res.json();
+    console.log({ data });
+    setVolunteerFormLoading(false);
+  }
 
   return (
     <div>
@@ -230,9 +254,11 @@ const Main = () => {
                     <br />
 
                     <Button
+                      loading={volunteeringFormLoading}
                       label="Submit"
                       icon="pi pi-user"
                       className="w-full"
+                      onClick={handleVolunteerFormSubmit}
                     />
                   </div>
                 </div>
