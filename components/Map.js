@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import {
   MapContainer,
   Marker,
@@ -13,9 +13,7 @@ function MapController({ center, zoom = 12 }) {
   map.setView(center, zoom);
 }
 
-const Map = () => {
-  const [lat, setlat] = useState(51.505);
-  const [long, setlong] = useState(-0.09);
+const Map = ({ lat = 51.505, long = -0.09 }) => {
   const [data, setdata] = useState([
     {
       geoLocation: { lat: -75.546518086577947, long: 45.467134581917357 },
@@ -25,10 +23,7 @@ const Map = () => {
   ]);
   useEffect(() => {
     // Geo Location
-    navigator.geolocation.getCurrentPosition(function (position) {
-      setlat(position.coords.latitude);
-      setlong(position.coords.longitude);
-    });
+
     // Api fetch
     fetch(`/api/reports`, {
       method: "POST",
@@ -50,7 +45,6 @@ const Map = () => {
       });
   }, []);
   const [Hover, setHover] = useState(null);
-  console.log(Hover);
 
   return (
     <div style={{ width: "100%", height: "300px" }}>
@@ -102,4 +96,4 @@ const Map = () => {
   );
 };
 
-export default Map;
+export default memo(Map);

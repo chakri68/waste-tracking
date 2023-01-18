@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
 import { Avatar } from "primereact/avatar";
@@ -8,6 +8,7 @@ import NavBar from "./NavBar";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
 
 const DynamicMap = dynamic(() => import("./Map"), {
   ssr: false,
@@ -15,10 +16,24 @@ const DynamicMap = dynamic(() => import("./Map"), {
 
 const Main = () => {
   // Required
+  const [lat, setlat] = useState(null);
+  const [long, setlong] = useState(null);
   const [displayResponsive, setDisplayResponsive] = useState(false);
   const [Description, setDescription] = useState("");
   const [Reason, setReason] = useState("");
+  const [volunteeringFormLoading, setVolunteerFormLoading] = useState(false);
   // End
+
+  function getCoordinates() {
+    navigator.geolocation.getCurrentPosition((position) => {
+      setlat(position.coords.latitude);
+      setlong(position.coords.longitude);
+    });
+  }
+
+  useEffect(() => {
+    getCoordinates();
+  }, []);
 
   const dialogFuncMap = {
     displayResponsive: setDisplayResponsive,
@@ -31,9 +46,32 @@ const Main = () => {
     }
   };
   const router = useRouter();
+  const session = useSession();
   const onHide = (name) => {
     dialogFuncMap[`${name}`](false);
   };
+
+  async function handleVolunteerFormSubmit() {
+    console.log("CLICK");
+    setVolunteerFormLoading(true);
+    let res = await fetch("/api/upload/volunteer", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        username: session?.data?.user?.username,
+        desc1: Reason,
+        desc2: Description,
+        uploadTime: Date.now(),
+        geoLocation: {
+          lat,
+          long,
+        },
+      }),
+    });
+    let data = await res.json();
+    console.log({ data });
+    setVolunteerFormLoading(false);
+  }
 
   return (
     <div>
@@ -146,7 +184,7 @@ const Main = () => {
           style={{ height: "350px" }}
           className="border-2 border-dashed border-300"
         >
-          <DynamicMap />
+          <DynamicMap lat={lat || undefined} long={long || undefined} />
         </div>
       </div>
       {/* Map End */}
@@ -175,7 +213,12 @@ const Main = () => {
             {/* Volunteer Form */}
             <Button
               label="Join Now"
-              onClick={() => onClick("displayResponsive")}
+              onClick={() => {
+                onClick("displayResponsive");
+                if (lat == null || long == null) {
+                  getCoordinates();
+                }
+              }}
               className="font-bold px-5 py-3 p-button-raised p-button-rounded white-space-nowrap"
             />
             <Dialog
@@ -230,9 +273,11 @@ const Main = () => {
                     <br />
 
                     <Button
+                      loading={volunteeringFormLoading}
                       label="Submit"
                       icon="pi pi-user"
                       className="w-full"
+                      onClick={handleVolunteerFormSubmit}
                     />
                   </div>
                 </div>
