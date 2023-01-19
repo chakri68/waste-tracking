@@ -6,7 +6,21 @@ export default function AdminDashboard() {
   if (
     !(session.status === "authenticated" && session.data.user?.role === "admin")
   ) {
-    return <p>Access Denied! Please login as admin.</p>;
+    return (
+      <div
+        style={{
+          backgroundColor: "white",
+          height: "100vh",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <img
+          src="../Denied.jpg"
+          style={{ height: "80Vh", width: "45vw", marginTop: "100px" }}
+        />
+      </div>
+    );
   }
   return (
     <>

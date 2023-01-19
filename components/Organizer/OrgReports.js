@@ -6,9 +6,12 @@ import { Rating } from "primereact/rating";
 import NavBar from "../NavBar";
 import { ConfirmPopup, confirmPopup } from "primereact/confirmpopup";
 import { Toast } from "primereact/toast";
+import { Dialog } from "primereact/dialog";
+import OrgReportStats from "./OrgReportStat";
 
 const OrgReports = () => {
   const [products, setProducts] = useState(null);
+  const [Display, setDisplay] = useState(false);
   const [layout, setLayout] = useState("grid");
   const [sortKey, setSortKey] = useState(null);
   const [sortOrder, setSortOrder] = useState(null);
@@ -18,9 +21,11 @@ const OrgReports = () => {
     { label: "Price Low to High", value: "price" },
   ];
 
-  //   useEffect(() => {
-  //     productService.getProducts().then((data) => setProducts(data));
-  //   }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => {
+    setProducts(data);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const data = { image: "jcjd", description: "dddddddddd" };
 
   const onSortChange = (event) => {
     const value = event.value;
@@ -41,7 +46,7 @@ const OrgReports = () => {
       <div className="col-12">
         <div className="product-list-item">
           <img
-            src={`images/product/${data.image}`}
+            src={`${data.image}`}
             onError={(e) =>
               (e.target.src =
                 "https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png")
@@ -49,24 +54,24 @@ const OrgReports = () => {
             alt={data.name}
           />
           <div className="product-list-detail">
-            <div className="product-name">{data.name}</div>
+            {/* <div className="product-name">{data.name}</div> */}
             <div className="product-description">{data.description}</div>
-            <Rating value={data.rating} readOnly cancel={false}></Rating>
+            {/* <Rating value={data.rating} readOnly cancel={false}></Rating> */}
             <i className="pi pi-tag product-category-icon"></i>
-            <span className="product-category">{data.category}</span>
+            {/* <span className="product-category">{data.category}</span> */}
           </div>
           <div className="product-list-action">
             <span className="product-price">${data.price}</span>
-            <Button
+            {/* <Button
               icon="pi pi-shopping-cart"
               label="Add to Cart"
               disabled={data.inventoryStatus === "OUTOFSTOCK"}
-            ></Button>
-            <span
+            ></Button> */}
+            {/* <span
               className={`product-badge status-${data.inventoryStatus.toLowerCase()}`}
             >
               {data.inventoryStatus}
-            </span>
+            </span> */}
           </div>
         </div>
       </div>
@@ -77,7 +82,7 @@ const OrgReports = () => {
     return (
       <div className="col-12 md:col-4">
         <div className="product-grid-item card">
-          <div className="product-grid-item-top">
+          {/* <div className="product-grid-item-top">
             <div>
               <i className="pi pi-tag product-category-icon"></i>
               <span className="product-category">{data.category}</span>
@@ -87,7 +92,7 @@ const OrgReports = () => {
             >
               {data.inventoryStatus}
             </span>
-          </div>
+          </div> */}
           <div className="product-grid-item-content">
             <img
               src={`images/product/${data.image}`}
@@ -97,18 +102,18 @@ const OrgReports = () => {
               }
               alt={data.name}
             />
-            <div className="product-name">{data.name}</div>
+            {/* <div className="product-name">{data.name}</div>
             <div className="product-description">{data.description}</div>
-            <Rating value={data.rating} readOnly cancel={false}></Rating>
+            <Rating value={data.rating} readOnly cancel={false}></Rating> */}
           </div>
-          <div className="product-grid-item-bottom">
+          {/* <div className="product-grid-item-bottom">
             <span className="product-price">${data.price}</span>
             <Button
               icon="pi pi-shopping-cart"
               label="Add to Cart"
               disabled={data.inventoryStatus === "OUTOFSTOCK"}
             ></Button>
-          </div>
+          </div> */}
         </div>
       </div>
     );
@@ -163,11 +168,30 @@ const OrgReports = () => {
             header={header}
             itemTemplate={itemTemplate}
             paginator
-            rows={9}
+            rows={8}
             sortOrder={sortOrder}
             sortField={sortField}
           />
         </div>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <Button
+            onClick={() => {
+              setDisplay(true);
+            }}
+            label="Veiw Statics"
+            className="w-half mt-5 "
+          />
+        </div>
+        <Dialog
+          className="mt-3"
+          visible={Display}
+          style={{ width: "60vw", height: "80vh" }}
+          onHide={() => {
+            setDisplay(false);
+          }}
+        >
+          <OrgReportStats />
+        </Dialog>
       </div>
     </>
   );

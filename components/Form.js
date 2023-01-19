@@ -314,12 +314,13 @@ const Form = ({ submitCallback }) => {
             <Dialog
               className="mt-3"
               visible={Display}
-              style={{ width: "60vw", height: "90vh" }}
+              style={{ width: "60vw", height: "70vh" }}
               onHide={() => {
                 setDisplay(false);
               }}
             >
               <DynamicUtilMap
+                className="p-4"
                 onMarkerChange={(latlng) => {
                   setMarker(latlng);
                   console.log({ latlng });

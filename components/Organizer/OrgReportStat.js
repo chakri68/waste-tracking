@@ -26,12 +26,8 @@ const OrgReportStats = () => {
 
   return (
     <div className="main" style={{ backgroundColor: "white" }}>
-      <div>
-        <NavBar />
-      </div>
-
-      <div className="card flex mt-8 p-4">
-        <div className="text-800 font-bold text-4xl mb-3 text-center">
+      <div className="card flex p-6">
+        <div className="text-800 font-bold text-4xl mb-4 text-center">
           Reports Statics
         </div>
         <div className="flex">
@@ -41,28 +37,38 @@ const OrgReportStats = () => {
             options={lightOptions}
             style={{
               position: "relative",
-              width: "40%",
-              padding: "50px",
-              paddingLeft: "90px",
+              width: "300px",
+              height: "40vh",
             }}
           />
-          <div className="col-12 md:col-6 p-6 text-center md:text-left flex align-items-center ">
+          <div className="col-10 md:col-6 p-3 mt-2 text-center md:text-center align-items-center ">
             <div className="flex-initial">
-              <div className="mb-3 pr-2 flex-initial font-bold text-6xl text-center">
+              {/* <div className="mb-3 pr-2 flex-initial font-bold text-6xl text-center">
                 <span className="text-1100">User </span>
                 <span className="text-blue-1100">Details</span>
-              </div>
-              <div className="mb-3 text-center">
+              </div> */}
+              <div className="mb-2 text-center">
                 <span className="block text-2xl mb-1">
-                  <strong>Name:</strong>test
+                  <strong>Total number of Reports:</strong> test
                 </span>
-                <span className="block text-2xl  mb-1">
-                  <strong>Email:</strong> chaitanya.tata215@gmail.com
+                <span
+                  className="block text-2xl  mb-1"
+                  style={{ color: "orange" }}
+                >
+                  <strong>Pending :</strong> 30
+                </span>
+                <span className="block text-2xl  mb-1" style={{ color: "red" }}>
+                  <strong>Resolved :</strong> 30
                 </span>
 
-                <span className="block text-2xl  mb-1">
-                  <strong>Number of contributions:</strong>
-                  <img src="./Badge.webp" style={{ height: "50px" }} /> 0
+                <span
+                  className="block text-2xl  mb-1"
+                  style={{ color: "green" }}
+                >
+                  <strong>Accepted :</strong> 30
+                </span>
+                <span className="block text-2xl mb-1">
+                  <strong>Number of active residents:</strong> 100+
                 </span>
               </div>
             </div>

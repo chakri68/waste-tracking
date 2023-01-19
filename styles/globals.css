@@ -2,6 +2,9 @@
   width: 100%;
   height: 350px;
 }
+div{
+  background-color: white;
+}
 
 .infoContainer{
   background-image: url("../public/bg-1.png");

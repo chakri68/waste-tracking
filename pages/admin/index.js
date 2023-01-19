@@ -7,7 +7,11 @@ export default function AdminIndex() {
   if (
     !(session.status === "authenticated" && session.data.user?.role === "admin")
   ) {
-    return <p>Access Denied! Please login as admin.</p>;
+    return (
+      <div style={{ backgroundColor: "white" }}>
+        <img src="./De.webp" style={{ height: "40Vh" }} />
+      </div>
+    );
   }
   return <OrgMain />;
 }
