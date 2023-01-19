@@ -36,6 +36,8 @@ export default function Registration() {
       swal({
         text: "Error",
         icon: "error",
+        timer: 2000,
+        buttons: false,
       });
     }
     setLoading(false);
