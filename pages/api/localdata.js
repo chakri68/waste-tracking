@@ -22,52 +22,68 @@ export default async function handler(req, res) {
       .find({})
       .project({ reports: 1, _id: 0, username: 1, volunteeringForms: 1 })
       .toArray();
-    let reqData = data.reduce((result, user) => {
-      let reports = [],
-        volunteeringForms = [];
-      if (user.reports) {
-        reports = user.reports.filter((report) => {
-          if (
-            isInCircle(
-              { center, radius },
-              {
-                lat: report.geoLocation.lat,
-                long: report.geoLocation.long,
-              }
-            )
-          ) {
-            return true;
-          }
-          return false;
-        });
-      }
-      if (user.volunteeringForms) {
-        volunteeringForms = user.volunteeringForms.filter(
-          (volunteeringForm) => {
+    let reqData;
+    if (!radius) {
+      reqData = data.reduce((result, user) => {
+        let reports = user.reports,
+          volunteeringForms = user.volunteeringForms;
+        if (reports.length != 0 || volunteeringForms.length != 0) {
+          result.push({
+            username: user.username,
+            reports: reports,
+            volunteeringForms: volunteeringForms,
+          });
+        }
+        return result;
+      }, []);
+    } else {
+      reqData = data.reduce((result, user) => {
+        let reports = [],
+          volunteeringForms = [];
+        if (user.reports) {
+          reports = user.reports.filter((report) => {
             if (
               isInCircle(
                 { center, radius },
                 {
-                  lat: volunteeringForm.geoLocation.lat,
-                  long: volunteeringForm.geoLocation.long,
+                  lat: report.geoLocation.lat,
+                  long: report.geoLocation.long,
                 }
               )
             ) {
               return true;
             }
             return false;
-          }
-        );
-      }
-      if (reports.length != 0 || volunteeringForms.length != 0) {
-        result.push({
-          username: user.username,
-          reports: reports,
-          volunteeringForms: volunteeringForms,
-        });
-      }
-      return result;
-    }, []);
+          });
+        }
+        if (user.volunteeringForms) {
+          volunteeringForms = user.volunteeringForms.filter(
+            (volunteeringForm) => {
+              if (
+                isInCircle(
+                  { center, radius },
+                  {
+                    lat: volunteeringForm.geoLocation.lat,
+                    long: volunteeringForm.geoLocation.long,
+                  }
+                )
+              ) {
+                return true;
+              }
+              return false;
+            }
+          );
+        }
+        if (reports.length != 0 || volunteeringForms.length != 0) {
+          result.push({
+            username: user.username,
+            reports: reports,
+            volunteeringForms: volunteeringForms,
+          });
+        }
+        return result;
+      }, []);
+    }
     if (!reqData) {
       return res.status(200).json({ ok: false, result: null });
     }
