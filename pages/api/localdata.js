@@ -23,8 +23,10 @@ export default async function handler(req, res) {
       .project({ reports: 1, _id: 0, username: 1, volunteeringForms: 1 })
       .toArray();
     let reqData = data.reduce((result, user) => {
+      let reports = [],
+        volunteeringForms = [];
       if (user.reports) {
-        let reports = user.reports.filter((report) => {
+        reports = user.reports.filter((report) => {
           if (
             isInCircle(
               { center, radius },
@@ -38,12 +40,31 @@ export default async function handler(req, res) {
           }
           return false;
         });
-        if (reports.length != 0) {
-          result.push({
-            username: user.username,
-            reports: reports,
-          });
-        }
+      }
+      if (user.volunteeringForms) {
+        volunteeringForms = user.volunteeringForms.filter(
+          (volunteeringForm) => {
+            if (
+              isInCircle(
+                { center, radius },
+                {
+                  lat: volunteeringForm.geoLocation.lat,
+                  long: volunteeringForm.geoLocation.long,
+                }
+              )
+            ) {
+              return true;
+            }
+            return false;
+          }
+        );
+      }
+      if (reports.length != 0 || volunteeringForms.length != 0) {
+        result.push({
+          username: user.username,
+          reports: reports,
+          volunteeringForms: volunteeringForms,
+        });
       }
       return result;
     }, []);
