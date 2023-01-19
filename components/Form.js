@@ -8,10 +8,18 @@ import { ProgressBar } from "primereact/progressbar";
 import { Tag } from "primereact/tag";
 import { Calendar } from "primereact/calendar";
 import NavBar from "./NavBar";
+import { Dialog } from "primereact/dialog";
+import dynamic from "next/dynamic";
+
+const DynamicUtilMap = dynamic(() => import("./UtilMap"), {
+  ssr: false,
+});
 
 const Form = ({ submitCallback }) => {
+  const [marker, setMarker] = useState(null);
   const [lat, setlat] = useState("");
   const [long, setlong] = useState("");
+  const [Display, setDisplay] = useState(false);
   useEffect(() => {
     if ("geolocation" in navigator) {
       console.log("Available");
@@ -44,8 +52,13 @@ const Form = ({ submitCallback }) => {
     formData.append("description", Description);
     formData.append("wasteType", value);
     formData.append("sinceDate", date);
-    formData.append("geoLocation[lat]", lat);
-    formData.append("geoLocation[long]", long);
+    if (!marker) {
+      formData.append("geoLocation[lat]", lat);
+      formData.append("geoLocation[long]", long);
+    } else {
+      formData.append("geoLocation[lat]", marker.lat);
+      formData.append("geoLocation[long]", marker.lng);
+    }
     formData.append("image", fileUploadRef.current.getFiles()[0]);
     let res = await fetch("/api/upload/report", {
       method: "POST",
@@ -287,6 +300,32 @@ const Form = ({ submitCallback }) => {
               onChange={(e) => setAddress(e.target.value)}
             />
             <br />
+            <br />
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <Button
+                loading={loading}
+                onClick={() => {
+                  setDisplay(true);
+                }}
+                label="Select Coordinates"
+                className="w-half "
+              />
+            </div>
+            <Dialog
+              className="mt-3"
+              visible={Display}
+              style={{ width: "60vw", height: "90vh" }}
+              onHide={() => {
+                setDisplay(false);
+              }}
+            >
+              <DynamicUtilMap
+                onMarkerChange={(latlng) => {
+                  setMarker(latlng);
+                  console.log({ latlng });
+                }}
+              />
+            </Dialog>
 
             <label
               htmlFor="password"
