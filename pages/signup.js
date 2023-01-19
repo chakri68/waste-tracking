@@ -8,6 +8,7 @@ export default function Registration() {
   let [loading, setLoading] = useState(false);
   let [username, setUsername] = useState("");
   let [password, setPassword] = useState("");
+  let [email, setEmail] = useState("");
 
   async function handleSubmit(e) {
     setLoading(true);
@@ -16,6 +17,7 @@ export default function Registration() {
       method: "POST",
       body: JSON.stringify({
         username,
+        email,
         password,
       }),
       headers: {
@@ -60,7 +62,11 @@ export default function Registration() {
         </div>
         <div className="input-field">
           <i className="fas fa-envelope"></i>
-          <input type="email" placeholder="Email" />
+          <input
+            type="email"
+            placeholder="Email"
+            onChange={({ target }) => setEmail(target.value)}
+          />
         </div>
         <div className="input-field">
           <i className="fas fa-lock"></i>

@@ -5,7 +5,7 @@ export default async function handler(req, res) {
   //Only POST mothod is accepted
   if (req.method === "POST") {
     //Getting email and password from body
-    const { username, password } = req.body;
+    const { username, password, email } = req.body;
     // Validate
     if (!username || !password) {
       res.status(422).json({ ok: false, message: "Invalid Data" });
@@ -16,7 +16,7 @@ export default async function handler(req, res) {
     //Check existing
     const checkExisting = await db
       .collection("user_details")
-      .findOne({ username: username });
+      .findOne({ $or: [{ username: username }, { email: email }] });
     // const checkExisting = await db
     //   .collection("user_details")
     //   .findOne({ $or: [{ username: username }, { ip_address: ip }] });
@@ -28,6 +28,7 @@ export default async function handler(req, res) {
     //Hash password
     const status = await db.collection("user_details").insertOne({
       username,
+      email,
       password: await hash(password, 12),
     });
     //Send success response
