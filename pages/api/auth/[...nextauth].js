@@ -60,8 +60,13 @@ export default async function auth(req, res) {
     },
   };
 
+  const pages = {
+    signIn: "/login",
+  };
+
   return await NextAuth(req, res, {
     providers,
     callbacks,
+    pages,
   });
 }
