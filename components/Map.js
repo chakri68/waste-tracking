@@ -55,16 +55,17 @@ const Map = ({ lat = 51.505, long = -0.09 }) => {
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         />
         {data.map((key, ind) => {
-          return (
-            <Marker
-              key={ind}
-              position={[
-                parseFloat(key.geoLocation.lat),
-                parseFloat(key.geoLocation.long),
-              ]}
-              eventHandlers={{ click: () => setHover(key) }}
-            />
-          );
+          if (!isNaN(key.geoLocation.lat) && !isNaN(key.geoLocation.long))
+            return (
+              <Marker
+                key={ind}
+                position={[
+                  parseFloat(key.geoLocation.lat),
+                  parseFloat(key.geoLocation.long),
+                ]}
+                eventHandlers={{ click: () => setHover(key) }}
+              />
+            );
         })}
         {Hover && (
           <Popup
