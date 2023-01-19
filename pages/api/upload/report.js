@@ -3,6 +3,7 @@ const multer = require("multer");
 const streamifier = require("streamifier");
 import { getToken } from "next-auth/jwt";
 import clientPromise from "../../../lib/mongodb";
+import { ObjectId } from "mongodb";
 
 // Disable nextjs default body parser
 export const config = {
@@ -84,6 +85,7 @@ export default async function handler(req, res) {
             reports: [
               ...(prev_data?.reports || []),
               {
+                _id: new ObjectId(),
                 geoLocation: {
                   lat: parseFloat(geoLocation.lat),
                   long: parseFloat(geoLocation.long),
