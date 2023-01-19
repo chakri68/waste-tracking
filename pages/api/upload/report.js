@@ -3,6 +3,7 @@ const multer = require("multer");
 const streamifier = require("streamifier");
 import { getToken } from "next-auth/jwt";
 import clientPromise from "../../../lib/mongodb";
+import { ObjectId } from "mongodb";
 
 // Disable nextjs default body parser
 export const config = {
@@ -84,7 +85,11 @@ export default async function handler(req, res) {
             reports: [
               ...(prev_data?.reports || []),
               {
-                geoLocation,
+                _id: new ObjectId(),
+                geoLocation: {
+                  lat: parseFloat(geoLocation.lat),
+                  long: parseFloat(geoLocation.long),
+                },
                 description,
                 sinceDate,
                 address,
@@ -114,11 +119,9 @@ export default async function handler(req, res) {
       res.status(500).json({ ok: false, result: null, message: error });
     }
   } else {
-    res
-      .status(400)
-      .json({
-        ok: false,
-        message: "No api endpoint found for the request type",
-      });
+    res.status(400).json({
+      ok: false,
+      message: "No api endpoint found for the request type",
+    });
   }
 }

@@ -18,7 +18,11 @@ export default async function handler(req, res) {
     }
     const checkedPwd = await compare(password, userWithUsername.password);
     if (!checkedPwd) return res.status(200).json({ ok: false, user: null });
-    res.status(200).json({ ok: true, user: { username: username } });
+    res.status(200).json({
+      ok: true,
+      // TODO: Remove the '||'
+      user: { username: username, role: userWithUsername?.role || "user" },
+    });
   } catch (err) {
     console.log("Caught Error: ", err);
     res.status(500).json({ ok: false, user: null });

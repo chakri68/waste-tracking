@@ -31,6 +31,7 @@ export default async function handler(req, res) {
           volunteeringForms: [
             ...(userWithUsername?.volunteeringForms || []),
             {
+              _id: new ObjectId(),
               desc1,
               desc2,
               geoLocation,
