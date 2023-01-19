@@ -25,8 +25,8 @@ export default async function handler(req, res) {
     let reqData;
     if (!radius) {
       reqData = data.reduce((result, user) => {
-        let reports = user.reports,
-          volunteeringForms = user.volunteeringForms;
+        let reports = user.reports || [],
+          volunteeringForms = user.volunteeringForms || [];
         if (reports.length != 0 || volunteeringForms.length != 0) {
           result.push({
             username: user.username,

@@ -84,7 +84,10 @@ export default async function handler(req, res) {
             reports: [
               ...(prev_data?.reports || []),
               {
-                geoLocation,
+                geoLocation: {
+                  lat: parseFloat(geoLocation.lat),
+                  long: parseFloat(geoLocation.long),
+                },
                 description,
                 sinceDate,
                 address,
@@ -114,11 +117,9 @@ export default async function handler(req, res) {
       res.status(500).json({ ok: false, result: null, message: error });
     }
   } else {
-    res
-      .status(400)
-      .json({
-        ok: false,
-        message: "No api endpoint found for the request type",
-      });
+    res.status(400).json({
+      ok: false,
+      message: "No api endpoint found for the request type",
+    });
   }
 }
