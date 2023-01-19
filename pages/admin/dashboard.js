@@ -1,7 +1,33 @@
 import { useSession } from "next-auth/react";
+import { useEffect, useState } from "react";
 import OrgReports from "../../components/Organizer/OrgReports";
+import { formatData } from "../../lib/formatUtils";
+import { getLocalCoordinates } from "../../lib/locationUtils";
 
 export default function AdminDashboard() {
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    getLocalCoordinates()
+      .then(({ coords: { latitude, longitude } }) => {
+        return fetch("/api/localdata", {
+          headers: { "Content-Type": "application/json" },
+          method: "POST",
+          body: JSON.stringify({
+            center: { lat: latitude, long: longitude },
+          }),
+        });
+      })
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        if (data.ok) {
+          setData(formatData(data.result, true));
+        }
+      });
+  }, []);
+
   const session = useSession();
   if (
     !(session.status === "authenticated" && session.data.user?.role === "admin")
@@ -24,7 +50,7 @@ export default function AdminDashboard() {
   }
   return (
     <>
-      <OrgReports />
+      <OrgReports data={data} />
     </>
   );
 }
