@@ -9,6 +9,7 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
+import { getLocalCoordinates } from "../lib/locationUtils";
 
 const DynamicMap = dynamic(() => import("./Map"), {
   ssr: false,
@@ -24,15 +25,11 @@ const Main = () => {
   const [volunteeringFormLoading, setVolunteerFormLoading] = useState(false);
   // End
 
-  function getCoordinates() {
-    navigator.geolocation.getCurrentPosition((position) => {
+  useEffect(() => {
+    getLocalCoordinates().then((position) => {
       setlat(position.coords.latitude);
       setlong(position.coords.longitude);
     });
-  }
-
-  useEffect(() => {
-    getCoordinates();
   }, []);
 
   const dialogFuncMap = {
