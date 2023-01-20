@@ -32,11 +32,6 @@ const OrgReports = ({ data: products, onResolve }) => {
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4PztzmryAyxHpLFJrEJjb1Cuv8MC4uSThmhRRN_k2dQ&s",
   };
 
-  useEffect(() => {
-    // setProducts([data1]);
-    console.log(products);
-  }, [products]);
-
   const renderListItem = (data) => {
     return (
       <div className="col-12">
@@ -65,6 +60,7 @@ const OrgReports = ({ data: products, onResolve }) => {
             style={{ display: "flex", justifyContent: "center" }}
           >
             <Button
+              disabled={data.status === "completed"}
               icon="pi pi-check"
               label="Mark as Resolved"
               onClick={(e) => {
@@ -112,6 +108,7 @@ const OrgReports = ({ data: products, onResolve }) => {
           >
             {/* <span className="product-price">${data.price}</span> */}
             <Button
+              disabled={data.status === "completed"}
               icon="pi pi-check"
               label="Mark as Resolved"
               onClick={(e) => {
