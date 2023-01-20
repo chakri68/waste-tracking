@@ -7,6 +7,20 @@ import { getLocalCoordinates } from "../../lib/locationUtils";
 export default function AdminDashboard() {
   const [data, setData] = useState(null);
 
+  async function onResolve(id) {
+    let res = await fetch("/api/admin/reports", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        statusObj: { id: id, status: "completed" },
+      }),
+    });
+    let data = await res.json();
+    if (data.ok) {
+      return true;
+    } else return false;
+  }
+
   useEffect(() => {
     getLocalCoordinates()
       .then(({ coords: { latitude, longitude } }) => {
@@ -50,7 +64,10 @@ export default function AdminDashboard() {
   }
   return (
     <>
-      <OrgReports data={data?.reports} />
+      <OrgReports
+        data={data?.reports}
+        onResolve={async (id) => await onResolve(id)}
+      />
     </>
   );
 }

@@ -10,10 +10,20 @@ import { Dialog } from "primereact/dialog";
 import OrgReportStats from "./OrgReportStat";
 import { parseCoords } from "../../lib/locationUtils";
 
-const OrgReports = ({ data: products }) => {
+const OrgReports = ({ data: products, onResolve }) => {
   // const [products, setProducts] = useState();
   const [layout, setLayout] = useState("grid");
   const [Display, setDisplay] = useState(false);
+
+  async function resolveWorkflow(id, node) {
+    let success = await onResolve(id);
+    console.log({ id, success });
+    if (success) {
+      console.log(node);
+      node.disabled = true;
+    }
+  }
+
   var data1 = {
     name: "12-03-22",
     description: "hello",
@@ -54,7 +64,13 @@ const OrgReports = ({ data: products }) => {
             className="product-list-action"
             style={{ display: "flex", justifyContent: "center" }}
           >
-            <Button icon="pi pi-check" label="Mark as Resolved"></Button>
+            <Button
+              icon="pi pi-check"
+              label="Mark as Resolved"
+              onClick={(e) => {
+                resolveWorkflow(data._id, e.currentTarget);
+              }}
+            />
           </div>
         </div>
       </div>
@@ -95,7 +111,13 @@ const OrgReports = ({ data: products }) => {
             style={{ display: "flex", justifyContent: "center" }}
           >
             {/* <span className="product-price">${data.price}</span> */}
-            <Button icon="pi pi-check" label="Mark as Resolved"></Button>
+            <Button
+              icon="pi pi-check"
+              label="Mark as Resolved"
+              onClick={(e) => {
+                resolveWorkflow(data._id, e.currentTarget);
+              }}
+            />
           </div>
         </div>
       </div>
