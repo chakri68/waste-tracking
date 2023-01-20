@@ -40,7 +40,7 @@ const Map = ({ lat = 51.505, long = -0.09 }) => {
           }),
         });
         let data = await res.json();
-        if (data.ok) return data.result;
+        if (data.ok) return formatData(data.result);
       }
     } else {
       if (globalData.current.length != 0) {
@@ -54,7 +54,7 @@ const Map = ({ lat = 51.505, long = -0.09 }) => {
           }),
         });
         let data = await res.json();
-        if (data.ok) return data.result;
+        if (data.ok) return formatData(data.result);
       }
     }
   }
@@ -65,7 +65,7 @@ const Map = ({ lat = 51.505, long = -0.09 }) => {
     getAndStoreData(true).then((data) => {
       if (!data) return;
       console.log({ localData: data });
-      localData.current = formatData(data);
+      localData.current = data;
       setData(localData.current);
     });
 
@@ -106,14 +106,14 @@ const Map = ({ lat = 51.505, long = -0.09 }) => {
                 getAndStoreData(false).then((data) => {
                   if (!data) return;
                   console.log({ globalData: data });
-                  globalData.current = formatData(data);
+                  globalData.current = data;
                   setData(globalData.current);
                 });
               } else {
                 getAndStoreData(true).then((data) => {
                   if (!data) return;
                   console.log({ localData: data });
-                  localData.current = formatData(data);
+                  localData.current = data;
                   setData(localData.current);
                 });
               }
