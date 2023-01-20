@@ -16,7 +16,7 @@ const Find = () => {
       </div>
       <div className="surface-0 text-700 text-center pt-8 pl-2 pr-2">
         <div className="infoContainer">
-          <img src="./logo1.png" alt="hyper" height={150} className="mb-3" />
+          <img src="/logo1.png" alt="hyper" height={150} className="mb-3" />
           <div className="text-900 font-bold text-4xl mb-1 p-4">
             Proper Disposal: How Individuals Can Help to Save the Environment
           </div>
@@ -41,7 +41,7 @@ const Find = () => {
       <div className="grid grid-nogutter surface-0 text-800 mt-5">
         <div className="flex align-items-center justify-content-center p-8 m-3">
           <div className="text-center mb-3">
-            <img src="./Leaf.jpg" alt="hyper" height={100} className="mb-3" />
+            <img src="/Leaf.jpg" alt="hyper" height={100} className="mb-3" />
             <div className="text-900 text-3xl font-medium mb-3">
               <Button
                 icon="pi pi-info"
@@ -84,7 +84,7 @@ const Find = () => {
         </div>
         <div className="col-12 md:col-6 overflow-hidden">
           <img
-            src="./Find.webp"
+            src="/Find.webp"
             alt="hero-1"
             className="md:ml-auto block md:h-full"
             style={{

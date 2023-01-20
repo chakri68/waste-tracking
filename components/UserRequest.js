@@ -46,7 +46,7 @@ const UserRequest = () => {
           style={{ height: "240px" }}
         >
           <img
-            src="./clean.jpg"
+            src="/clean.jpg"
             alt="hero-1"
             className="md:ml-auto block md:h-full"
             style={{

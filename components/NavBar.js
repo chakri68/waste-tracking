@@ -66,7 +66,7 @@ const NavBar = () => {
       <div
         style={{ display: "flex", backgroundColor: "#F8F9FA", height: "78px" }}
       >
-        <img alt="logo" src="./logo1.png" height="80" className="mr-2"></img>
+        <img alt="logo" src="/logo1.png" height="80" className="mr-2"></img>
 
         <a
           href="http://localhost:3000/"

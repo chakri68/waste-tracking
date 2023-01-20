@@ -45,7 +45,7 @@ export default function Registration() {
   return (
     <>
       <div className="text-center pt-5" style={{ backgroundColor: "white" }}>
-        <img src="./logo1.png" alt="hyper" height={150} className="" />
+        <img src="/logo1.png" alt="hyper" height={150} className="" />
       </div>
       <form
         method="post"

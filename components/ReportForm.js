@@ -61,7 +61,7 @@ const ReportForm = ({ reportData }) => {
     <div>
       <div className="surface-0 text-700 text-center  pt-0">
         <div className="text-blue-600 font-bold mb-0">
-          <img src="./sucess.gif" style={{ height: "320px" }} />
+          <img src="/sucess.gif" style={{ height: "320px" }} />
         </div>
         <div className="text-900 font-bold text-5xl mb-2">
           Thanks for filling the Form

@@ -13,7 +13,7 @@ const Gallery = () => {
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src="./g-1.jpg"
+          src="/g-1.jpg"
           alt="First slide"
           style={{ height: "450px", width: "200px" }}
         />
@@ -21,7 +21,7 @@ const Gallery = () => {
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src="./g-2.jpg"
+          src="/g-2.jpg"
           alt="Second slide"
           style={{ height: "450px", width: "200px" }}
         />
@@ -29,7 +29,7 @@ const Gallery = () => {
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src="./g-3.jpg"
+          src="/g-3.jpg"
           alt="Third slide"
           style={{ height: "450px", width: "200px" }}
         />

@@ -94,7 +94,7 @@ const Main = () => {
         </div>
         <div className="col-12 md:col-6 overflow-hidden">
           <img
-            src="./Clean.webp"
+            src="/Clean.webp"
             alt="hero-1"
             className="md:ml-auto block md:h-full"
             style={{
@@ -191,7 +191,7 @@ const Main = () => {
           style={{ height: "600px" }}
         >
           <img
-            src="./waste.webp"
+            src="/waste.webp"
             alt="hero-1"
             className="md:ml-auto block md:h-full"
             style={{ height: "200px" }}
@@ -227,7 +227,7 @@ const Main = () => {
               <div className="flex align-items-center justify-content-center">
                 <div className="text-center mb-3">
                   <img
-                    src="./logo1.png"
+                    src="/logo1.png"
                     alt="hyper"
                     height={100}
                     className="mb-3"

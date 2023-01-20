@@ -42,7 +42,7 @@ const Profile = () => {
       <div className="grid grid-nogutter surface-0 text-800 pt-5" id="profile">
         <div className="col-12 md:col-6 overflow-hidden flex align-items-center">
           <img
-            src="./avatar.png"
+            src="/avatar.png"
             alt="hero-1"
             className="md:ml-auto block md:h-full"
             style={{
@@ -70,7 +70,7 @@ const Profile = () => {
 
               <span className="block text-2xl  mb-1">
                 <strong>Number of contributions:</strong>
-                <img src="./Badge.webp" style={{ height: "50px" }} /> 0
+                <img src="/Badge.webp" style={{ height: "50px" }} /> 0
               </span>
             </div>
           </div>
@@ -100,7 +100,7 @@ const Profile = () => {
               style={{ height: "300px" }}
             >
               <img
-                src="./p-3.jpeg"
+                src="/p-3.jpeg"
                 alt="hero-1"
                 className="md:ml-auto block md:"
                 style={{ height: "300px", width: "340px" }}

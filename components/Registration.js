@@ -7,7 +7,7 @@ function Registration() {
       {/* <div>
         <img
           className="blob"
-          src="./blob-1.png"
+          src="/blob-1.png"
           style={{
             position: "absolute",
             top: "-18%",
@@ -59,7 +59,7 @@ function Registration() {
       </form>
       {/* <div>
         <img
-          src="./blob-1.png"
+          src="/blob-1.png"
           className="blob"
           style={{
             position: "absolute",

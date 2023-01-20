@@ -11,7 +11,7 @@ const OrgMain = () => {
       <div className="grid grid-nogutter surface-0 text-800 mt-5">
         <div className="col-12 md:col-6 overflow-hidden">
           <img
-            src="./Recycle.jpg"
+            src="/Recycle.jpg"
             alt="hero-1"
             className="md:ml-auto block md:h-full"
             style={{
