@@ -320,6 +320,8 @@ const Form = ({ submitCallback }) => {
               }}
             >
               <DynamicUtilMap
+                lat={lat}
+                long={long}
                 className="p-4"
                 onMarkerChange={(latlng) => {
                   setMarker(latlng);
