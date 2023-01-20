@@ -36,6 +36,7 @@ export default async function handler(req, res) {
               desc2,
               geoLocation,
               uploadTime,
+              status: "pending",
             },
           ],
         },

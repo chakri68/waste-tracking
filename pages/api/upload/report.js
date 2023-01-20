@@ -95,6 +95,7 @@ export default async function handler(req, res) {
                 address,
                 wasteType,
                 imageURL,
+                status: "pending",
               },
             ],
           },
