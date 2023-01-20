@@ -27,11 +27,11 @@ const inter = Inter({ subsets: ["latin"] });
 export default function Home() {
   return (
     <>
-      {/* <Main /> */}
+      <Main />
       {/* <Find /> */}
       {/* <OrgMain /> */}
       {/* <OrgReports /> */}
-      <OrgVolunteers />
+      {/* <OrgVolunteers /> */}
       {/* <OrgReportStats /> */}
       {/* <About /> */}
       {/* <Form /> */}
