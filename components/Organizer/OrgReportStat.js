@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Chart } from "primereact/chart";
 import NavBar from "../NavBar";
 
-const OrgReportStats = () => {
+const OrgReportStats = ({ reportData }) => {
   const [chartData] = useState({
     labels: ["A", "B", "C"],
     datasets: [
@@ -59,13 +59,6 @@ const OrgReportStats = () => {
                 </span>
                 <span className="block text-2xl  mb-1" style={{ color: "red" }}>
                   <strong>Resolved :</strong> 30
-                </span>
-
-                <span
-                  className="block text-2xl  mb-1"
-                  style={{ color: "green" }}
-                >
-                  <strong>Accepted :</strong> 30
                 </span>
                 <span className="block text-2xl mb-1">
                   <strong>Number of active residents:</strong> 100+
