@@ -11,6 +11,7 @@ import { Button } from "primereact/button";
 import { getLocalCoordinates } from "../lib/locationUtils";
 import { Checkbox } from "primereact/checkbox";
 import { formatData } from "../lib/formatUtils";
+import { Dialog } from "primereact/dialog";
 
 function MapController({ center, zoom = 12 }) {
   const map = useMap();
@@ -19,6 +20,7 @@ function MapController({ center, zoom = 12 }) {
 
 const Map = ({ lat = 51.505, long = -0.09 }) => {
   const [checked, setChecked] = useState(false);
+  const [Display, setDisplay] = useState(false);
   const [data, setData] = useState([]);
   const localData = useRef([]);
   const globalData = useRef([]);
@@ -98,7 +100,7 @@ const Map = ({ lat = 51.505, long = -0.09 }) => {
   return (
     <div style={{ width: "100%", height: "300px" }}>
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <div className="field-checkbox">
+        <div className="field-checkbox p-4">
           <Checkbox
             checked={checked}
             onChange={(e) => {
@@ -138,11 +140,16 @@ const Map = ({ lat = 51.505, long = -0.09 }) => {
                   parseFloat(key.geoLocation.lat),
                   parseFloat(key.geoLocation.long),
                 ]}
-                eventHandlers={{ click: () => setHover(key) }}
+                eventHandlers={{
+                  click: () => {
+                    setHover(key);
+                  },
+                }}
               />
             );
         })}
-        {Hover && (
+
+        {Hover != null ? (
           <Popup
             position={[
               parseFloat(Hover.geoLocation.lat),
@@ -161,10 +168,61 @@ const Map = ({ lat = 51.505, long = -0.09 }) => {
               </p>
               <img
                 src={Hover.imageURL}
-                style={{ height: "100px", width: "100%", objectFit: "contain" }}
+                style={{
+                  height: "120px",
+                  width: "300px",
+                  objectFit: "contain",
+                }}
               />
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                <Button
+                  label="View more"
+                  icon=" pi pi-map"
+                  onClick={() => {
+                    setDisplay(true);
+                  }}
+                  className=" p-button-text mt-2 "
+                />
+              </div>
+              <Dialog
+                className="mt-3"
+                visible={Display}
+                style={{ width: "50vw", height: "78vh" }}
+                onHide={() => {
+                  setDisplay(false);
+                }}
+              >
+                <div className="card">
+                  <div className="p-4">
+                    <img
+                      src={Hover.imageURL}
+                      alt="hyper"
+                      style={{ height: "30vh", width: "100%" }}
+                      className="mb-3"
+                    />
+                  </div>
+                  <div className="mb-3 font-bold text-1.4xl text-center mt-3">
+                    <span className="text-900"> {Hover.sinceDate}</span>
+                  </div>
+                  <span className="block text-1.3xl mb-1 text-center mt-2">
+                    <strong>Type of waste :</strong>
+                    {"  "}
+                    {Hover.wasteType}
+                  </span>
+                  <div className="text-700 text-1xl mb-3 pl-7 pr-7 text-center mt-3">
+                    {Hover.description}
+                  </div>
+                  <span className="block text-1.3xl mb-1 text-center mt-2">
+                    <strong>Address :</strong>
+                    {"  "}
+                    {Hover.address}
+                  </span>
+                </div>
+              </Dialog>
             </div>
           </Popup>
+        ) : (
+          ""
         )}
         <ZoomControl style={{ zIndex: 3 }} />
       </MapContainer>
