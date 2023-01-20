@@ -1,16 +1,51 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
 import { InputTextarea } from "primereact/inputtextarea";
 import { Dialog } from "primereact/dialog";
 import NavBar from "./NavBar";
 import dynamic from "next/dynamic";
+import { getLocalCoordinates } from "../lib/locationUtils";
+import { formatData } from "../lib/formatUtils";
 
 const DynamicMap = dynamic(() => import("./VolunteerMap"), {
   ssr: false,
 });
 
 const About = () => {
+  const [localCoords, setLocalCoords] = useState({ lat: 51.505, long: -0.09 });
+  const [volunteerFormData, setVolunteerFormData] = useState([]);
+
+  useEffect(() => {
+    getLocalCoordinates()
+      .then((position) => {
+        setLocalCoords({
+          lat: position.coords.latitude,
+          long: position.coords.longitude,
+        });
+        return position;
+      })
+      .then((localCoords) => {
+        console.log({ localCoords });
+        return fetch("/api/localdata", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            center: {
+              lat: localCoords.coords.latitude,
+              long: localCoords.coords.longitude,
+            },
+            radius: 100,
+          }),
+        });
+      })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log({ data: formatData(data.result, true).volunteeringForms });
+        setVolunteerFormData(formatData(data.result, true).volunteeringForms);
+      });
+  }, []);
+
   // Required
   const [displayResponsive, setDisplayResponsive] = useState(false);
   const [description1, setdescription1] = useState("");
@@ -39,7 +74,7 @@ const About = () => {
         <NavBar />
       </div>
       <div className="surface-0 text-700 text-center pt-8">
-        <img src="./logo1.png" alt="hyper" height={150} className="mb-3" />
+        <img src="/logo1.png" alt="hyper" height={150} className="mb-3" />
         <div className="text-900 font-bold text-5xl mb-3">
           About our Volunteer community
         </div>
@@ -66,7 +101,7 @@ const About = () => {
           style={{ height: "60vh", borderRadius: "30px", margin: "20px" }}
           className="border-2 border-dashed border-300 p-6"
         >
-          <DynamicMap />
+          <DynamicMap data={volunteerFormData} center={localCoords} />
         </div>
         {/* Start of Organizer */}
         <div className="grid grid-nogutter surface-0 text-800">
@@ -75,7 +110,7 @@ const About = () => {
             style={{ height: "600px" }}
           >
             <img
-              src="./Organizer.jpg"
+              src="/Organizer.jpg"
               alt="hero-1"
               className="md:ml-auto block md:h-full"
               style={{ width: "50vw", scale: "0.8" }}
@@ -106,7 +141,7 @@ const About = () => {
                 <div className="flex align-items-center justify-content-center">
                   <div className="text-center mb-3">
                     <img
-                      src="./logo1.png"
+                      src="/logo1.png"
                       alt="hyper"
                       height={120}
                       className="mb-3"
