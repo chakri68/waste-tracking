@@ -21,7 +21,7 @@ function LocationMarker({ onMarkerChange }) {
   );
 }
 
-function UtilMap({ lat = 51.505, lng = -0.09, onMarkerChange }) {
+function UtilMap({ lat = 51.505, long = -0.09, onMarkerChange }) {
   return (
     <div className="map" style={{ borderRadius: "30px" }}>
       <div
@@ -32,7 +32,11 @@ function UtilMap({ lat = 51.505, lng = -0.09, onMarkerChange }) {
         }}
         className="border-2 border-dashed border-300"
       >
-        <MapContainer center={{ lat, lng }} zoom={13} scrollWheelZoom={false}>
+        <MapContainer
+          center={{ lat, lng: long }}
+          zoom={13}
+          scrollWheelZoom={false}
+        >
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
