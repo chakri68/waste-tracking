@@ -178,7 +178,7 @@ const Main = () => {
         </div>
         <br />
         <div
-          style={{ height: "350px" }}
+          style={{ height: "480px", paddingLeft: "50px", paddingRight: "50px" }}
           className="border-2 border-dashed border-300"
         >
           <DynamicMap lat={lat || undefined} long={long || undefined} />
