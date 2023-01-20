@@ -50,7 +50,7 @@ export default function AdminDashboard() {
   }
   return (
     <>
-      <OrgReports data={data} />
+      <OrgReports data={data?.reports} />
     </>
   );
 }
