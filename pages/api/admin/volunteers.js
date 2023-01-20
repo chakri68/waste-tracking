@@ -5,6 +5,10 @@ import { ObjectId } from "mongodb";
 const secret = process.env.NEXTAUTH_SECRET;
 
 export default async function handler(req, res) {
+  const statuses = {
+    pending: 0,
+    completed: 1,
+  };
   const token = await getToken({ req, secret });
   if (!token?.user || token?.user?.role !== "admin") {
     return res.status(403).json({ ok: false, result: "Login required.." });
@@ -15,6 +19,8 @@ export default async function handler(req, res) {
       body: { statusObj },
     } = req;
     try {
+      if (!Object.keys(statuses).includes(statusObj.status))
+        throw new Error("The status is not defined");
       let connection = await clientPromise;
       let db = connection.db("waste_tracking");
       let data;
@@ -36,7 +42,7 @@ export default async function handler(req, res) {
       res.status(200).json({ ok: true, result: data });
     } catch (err) {
       console.log("Caught Error: ", err);
-      res.status(500).json({ ok: false, result: null });
+      res.status(500).json({ ok: false, result: null, error: err });
     }
   } else {
     res
