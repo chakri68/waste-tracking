@@ -66,7 +66,7 @@ const ReportForm = ({ reportData }) => {
         <div className="text-900 font-bold text-5xl mb-2">
           Thanks for filling the Form
         </div>
-        <div className="text-700 text-2xl mb-3">Need Immidiate action?</div>
+        <div className="text-700 text-2xl mb-3">Need Immediate action?</div>
         <Button
           onClick={handleMailGen}
           loading={loading}

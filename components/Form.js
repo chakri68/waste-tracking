@@ -126,7 +126,7 @@ const Form = ({ submitCallback }) => {
     return (
       <div
         className="flex align-items-center flex-column"
-        style={{ backgroundColour: "white" }}
+        style={{ backgroundColor: "white" }}
       >
         <i
           className="pi pi-image mt-3 p-5"
@@ -223,7 +223,7 @@ const Form = ({ submitCallback }) => {
   <iframe src="https://embed.lottiefiles.com/animation/99272"></iframe>;
 
   return (
-    <div style={{ backgroundColour: "white", width: "100vw" }}>
+    <div style={{ backgroundColor: "white", width: "100vw" }}>
       <div>
         <NavBar />
       </div>
@@ -247,7 +247,7 @@ const Form = ({ submitCallback }) => {
               for future generations.
             </div>
             <span className="text-600 font-medium line-height-3">
-              Dont Know how our website work?
+              Don't Know how our website work?
             </span>
             <a className="font-medium no-underline ml-2 text-blue-500 cursor-pointer">
               Click here!
@@ -277,7 +277,7 @@ const Form = ({ submitCallback }) => {
             <br />
             <label
               htmlFor="email"
-              className="block text-900 font-larg mb-3"
+              className="block text-900 font-large mb-3"
               style={{ textAlign: "center" }}
             >
               Select Type of Waste
@@ -348,7 +348,7 @@ const Form = ({ submitCallback }) => {
 
             <label
               htmlFor="email"
-              className="block text-900 font-larg mb-3"
+              className="block text-900 font-large mb-3"
               style={{ textAlign: "center" }}
             >
               Since when did you found that waste laying there

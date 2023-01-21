@@ -56,7 +56,7 @@ const OrgReports = ({ data: products, onResolve }) => {
               <strong>Date :</strong> {data.sinceDate}
             </span>
             <span className="block text-1.2xl  mb-3 ml-5 mr-5">
-              <strong>Adderss :</strong> {data.address}
+              <strong>Address :</strong> {data.address}
             </span>
             <span className="block text-1.2xl  mb-3 ml-5 mr-5">
               <strong>Description :</strong> {data.description}
@@ -104,7 +104,7 @@ const OrgReports = ({ data: products, onResolve }) => {
               alt={data.name}
             />
             <span className="block text-1.2xl  mb-3 ml-5 mr-5">
-              <strong>Adderss :</strong> {data.address}
+              <strong>Address :</strong> {data.address}
             </span>
             <div className="product-description" style={{ height: "50px" }}>
               {data.description}
@@ -198,7 +198,7 @@ const OrgReports = ({ data: products, onResolve }) => {
             onClick={() => {
               setDisplay(true);
             }}
-            label="Veiw Statics"
+            label="View Statics"
             className="w-half mt-5 "
           />
         </div>

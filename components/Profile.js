@@ -130,7 +130,7 @@ const Profile = () => {
                       {report.description}
                     </div>
                     <div className="text-700 text-1xl mb-5">
-                      Your report is sucussfully submitted waiting for response
+                      Your report is successfully submitted waiting for response
                     </div>
                   </div>
                 </div>

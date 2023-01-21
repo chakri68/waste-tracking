@@ -209,7 +209,7 @@ const Main = () => {
         <div className="col-12 md:col-6 p-6 text-center md:text-left flex align-items-center">
           <div className="surface-0 text-700 text-center">
             <div className="text-900 font-bold text-5xl mb-3">
-              Join Our Volenteer Program
+              Join Our Volunteer Program
             </div>
             <div className="text-700 text-2xl mb-5">
               Be the change you wish to see in the world - Join our waste
