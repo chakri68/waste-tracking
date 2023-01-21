@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { createRef, useEffect, useRef, useState } from "react";
 import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
 import { Avatar } from "primereact/avatar";
@@ -16,6 +16,7 @@ const DynamicMap = dynamic(() => import("./Map"), {
 });
 
 const Main = () => {
+  const scrollToDiv = createRef(null);
   // Required
   const [lat, setlat] = useState(null);
   const [long, setlong] = useState(null);
@@ -89,6 +90,9 @@ const Main = () => {
               label="Learn More"
               type="button"
               className="mr-3 p-button-raised"
+              onClick={() => {
+                scrollToDiv.current.scrollIntoView();
+              }}
             />
           </section>
         </div>
@@ -106,7 +110,11 @@ const Main = () => {
         </div>
       </div>
 
-      <div className="surface-0 text-center pt-3">
+      <div
+        className="surface-0 text-center pt-3"
+        ref={scrollToDiv}
+        style={{ scrollMarginTop: "100px" }}
+      >
         <div className="mb-3 font-bold text-5xl">
           <span className="text-900">One Product, </span>
           <span className="text-blue-600">save future</span>
