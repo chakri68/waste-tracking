@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import swal from "sweetalert";
 import { Button } from "primereact/button";
 import { signIn, useSession } from "next-auth/react";
@@ -14,9 +14,12 @@ export default function Login() {
   let [username, setUsername] = useState("");
   let [password, setPassword] = useState("");
 
-  if (session.status == "authenticated") {
-    router.replace("/");
-  }
+  useEffect(() => {
+    if (session.status === "authenticated") {
+      if (session.data.user.role === "admin") router.push("/admin");
+      else router.push("/");
+    }
+  }, [session]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -34,7 +37,7 @@ export default function Login() {
         buttons: false,
         timer: 2000,
       });
-      router.push(res.url);
+      // router.push(res.url);
     } else {
       swal({
         text: "Wrong Credentials",
