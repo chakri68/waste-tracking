@@ -307,14 +307,16 @@ const Form = ({ submitCallback }) => {
                 onClick={() => {
                   setDisplay(true);
                 }}
-                label="Select Coordinates"
+                label="Select a location"
                 className="w-half "
               />
             </div>
             <Dialog
               className="mt-3"
+              header="Click to place a pin"
+              headerStyle={{ textAlign: "center" }}
               visible={Display}
-              style={{ width: "60vw", height: "70vh" }}
+              style={{ width: "60vw", height: "60vh" }}
               onHide={() => {
                 setDisplay(false);
               }}
@@ -323,9 +325,11 @@ const Form = ({ submitCallback }) => {
                 lat={lat}
                 long={long}
                 className="p-4"
+                markerlatlng={{ lat: lat, lng: long }}
                 onMarkerChange={(latlng) => {
                   setMarker(latlng);
-                  console.log({ latlng });
+                  setlat(latlng.lat);
+                  setlong(latlng.lng);
                 }}
               />
             </Dialog>
