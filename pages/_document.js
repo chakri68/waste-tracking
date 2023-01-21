@@ -1,9 +1,11 @@
-import { Html, Head, Main, NextScript } from "next/document";
+import { Html, Main, NextScript, Head } from "next/document";
 
 export default function Document() {
   return (
     <Html lang="en">
       <Head>
+        <title>Go Clean</title>
+        <link rel="icon" type="image/x-icon" href="/logo1.png" />
         <link
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
           rel="stylesheet"
