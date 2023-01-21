@@ -9,7 +9,10 @@ export default function AdminIndex() {
   ) {
     return (
       <div style={{ backgroundColor: "white" }}>
-        <img src="/De.webp" style={{ height: "40Vh" }} />
+        <img
+          src="/De.webp"
+          style={{ height: "80Vh", marginLeft: "250px", marginTop: "60px" }}
+        />
       </div>
     );
   }
