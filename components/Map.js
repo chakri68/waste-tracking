@@ -6,6 +6,7 @@ import {
   TileLayer,
   ZoomControl,
   useMap,
+  Circle,
 } from "react-leaflet";
 import { Button } from "primereact/button";
 import { getLocalCoordinates } from "../lib/locationUtils";
@@ -122,11 +123,12 @@ const Map = ({ lat = 51.505, long = -0.09 }) => {
               setChecked(e.checked);
             }}
           />
-          <label htmlFor="binary">Show global data</label>
+          <label htmlFor="binary">Show all reports</label>
         </div>
       </div>
       <MapContainer zoom={12} zoomControl={false} scrollWheelZoom={false}>
         <MapController center={[lat, long]} />
+        {!checked && <Circle center={[lat, long]} radius={100000} />}
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
