@@ -7,8 +7,8 @@ import {
   useMapEvent,
 } from "react-leaflet";
 
-function LocationMarker({ onMarkerChange }) {
-  const [position, setPosition] = useState(null);
+function LocationMarker({ onMarkerChange, location }) {
+  const [position, setPosition] = useState(location || null);
   useMapEvent("click", (e) => {
     onMarkerChange(e.latlng);
     setPosition(e.latlng);
@@ -21,7 +21,7 @@ function LocationMarker({ onMarkerChange }) {
   );
 }
 
-function UtilMap({ lat = 51.505, long = -0.09, onMarkerChange }) {
+function UtilMap({ lat = 51.505, long = -0.09, onMarkerChange, markerlatlng }) {
   return (
     <div className="map" style={{ borderRadius: "30px" }}>
       <div
@@ -41,7 +41,10 @@ function UtilMap({ lat = 51.505, long = -0.09, onMarkerChange }) {
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          <LocationMarker onMarkerChange={onMarkerChange} />
+          <LocationMarker
+            onMarkerChange={onMarkerChange}
+            location={markerlatlng}
+          />
         </MapContainer>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { createRef, useEffect, useRef, useState } from "react";
 import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
 import { Avatar } from "primereact/avatar";
@@ -16,6 +16,7 @@ const DynamicMap = dynamic(() => import("./Map"), {
 });
 
 const Main = () => {
+  const scrollToDiv = createRef(null);
   // Required
   const [lat, setlat] = useState(null);
   const [long, setlong] = useState(null);
@@ -53,7 +54,7 @@ const Main = () => {
     dialogFuncMap[`${name}`](false);
   };
 
-  async function handleVolunteerFormSubmit() {
+  async function handleVolunteerFormSubmit(successCallback) {
     console.log("CLICK");
     setVolunteerFormLoading(true);
     let res = await fetch("/api/upload/volunteer", {
@@ -73,6 +74,7 @@ const Main = () => {
     let data = await res.json();
     console.log({ data });
     setVolunteerFormLoading(false);
+    successCallback();
   }
 
   return (
@@ -94,6 +96,9 @@ const Main = () => {
               label="Learn More"
               type="button"
               className="mr-3 p-button-raised"
+              onClick={() => {
+                scrollToDiv.current.scrollIntoView();
+              }}
             />
           </section>
         </div>
@@ -111,7 +116,11 @@ const Main = () => {
         </div>
       </div>
 
-      <div className="surface-0 text-center pt-3">
+      <div
+        className="surface-0 text-center pt-3"
+        ref={scrollToDiv}
+        style={{ scrollMarginTop: "100px" }}
+      >
         <div className="mb-3 font-bold text-5xl">
           <span className="text-900">One Product, </span>
           <span className="text-blue-600">save future</span>
@@ -206,7 +215,7 @@ const Main = () => {
         <div className="col-12 md:col-6 p-6 text-center md:text-left flex align-items-center">
           <div className="surface-0 text-700 text-center">
             <div className="text-900 font-bold text-5xl mb-3">
-              Join Our Volenteer Program
+              Join Our Volunteer Program
             </div>
             <div className="text-700 text-2xl mb-5">
               Be the change you wish to see in the world - Join our waste
@@ -279,7 +288,13 @@ const Main = () => {
                       label="Submit"
                       icon="pi pi-user"
                       className="w-full"
-                      onClick={handleVolunteerFormSubmit}
+                      onClick={() => {
+                        handleVolunteerFormSubmit(() => {
+                          setDisplayResponsive(false);
+                          setDescription("");
+                          setReason("");
+                        });
+                      }}
                     />
                   </div>
                 </div>

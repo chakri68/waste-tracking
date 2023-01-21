@@ -6,7 +6,7 @@ import { Dialog } from "primereact/dialog";
 import NavBar from "./NavBar";
 import dynamic from "next/dynamic";
 import { getLocalCoordinates } from "../lib/locationUtils";
-import { formatData } from "../lib/formatUtils";
+import { formatData, getVolunteerFormData } from "../lib/formatUtils";
 
 const DynamicMap = dynamic(() => import("./VolunteerMap"), {
   ssr: false,
@@ -41,8 +41,10 @@ const About = () => {
       })
       .then((res) => res.json())
       .then((data) => {
-        console.log({ data: formatData(data.result, true).volunteeringForms });
-        setVolunteerFormData(formatData(data.result, true).volunteeringForms);
+        console.log({
+          data: getVolunteerFormData(data.result),
+        });
+        setVolunteerFormData(getVolunteerFormData(data.result));
       });
   }, []);
 
@@ -155,7 +157,7 @@ const About = () => {
                         htmlFor="text"
                         className="block text-900 font-medium mb-1"
                       >
-                        Prefered Name
+                        Preferred Name
                       </label>
                       <InputText
                         id="name"
@@ -170,7 +172,7 @@ const About = () => {
                         htmlFor="text"
                         className="block text-900 font-medium mb-2"
                       >
-                        Why you want to bocome an Organizer?
+                        Why you want to become an Organizer?
                       </label>
 
                       <InputTextarea
@@ -184,7 +186,7 @@ const About = () => {
                         htmlFor="text"
                         className="block text-900 font-medium mb-2"
                       >
-                        Any Past experiance?
+                        Any Past experience?
                       </label>
 
                       <InputTextarea

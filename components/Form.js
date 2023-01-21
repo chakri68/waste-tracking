@@ -126,7 +126,7 @@ const Form = ({ submitCallback }) => {
     return (
       <div
         className="flex align-items-center flex-column"
-        style={{ backgroundColour: "white" }}
+        style={{ backgroundColor: "white" }}
       >
         <i
           className="pi pi-image mt-3 p-5"
@@ -223,7 +223,7 @@ const Form = ({ submitCallback }) => {
   <iframe src="https://embed.lottiefiles.com/animation/99272"></iframe>;
 
   return (
-    <div style={{ backgroundColour: "white", width: "100vw" }}>
+    <div style={{ backgroundColor: "white", width: "100vw" }}>
       <div>
         <NavBar />
       </div>
@@ -247,7 +247,7 @@ const Form = ({ submitCallback }) => {
               for future generations.
             </div>
             <span className="text-600 font-medium line-height-3">
-              Dont Know how our website work?
+              Don't Know how our website work?
             </span>
             <a className="font-medium no-underline ml-2 text-blue-500 cursor-pointer">
               Click here!
@@ -255,7 +255,7 @@ const Form = ({ submitCallback }) => {
           </div>
 
           <div>
-            <h5>Template</h5>
+            <p className="block text-900 font-large mb-3">Upload Files</p>
             <FileUpload
               ref={fileUploadRef}
               name="demo[]"
@@ -277,7 +277,7 @@ const Form = ({ submitCallback }) => {
             <br />
             <label
               htmlFor="email"
-              className="block text-900 font-larg mb-3"
+              className="block text-900 font-large mb-3"
               style={{ textAlign: "center" }}
             >
               Select Type of Waste
@@ -307,14 +307,16 @@ const Form = ({ submitCallback }) => {
                 onClick={() => {
                   setDisplay(true);
                 }}
-                label="Select Coordinates"
+                label="Select a location"
                 className="w-half "
               />
             </div>
             <Dialog
               className="mt-3"
+              header="Click to place a pin"
+              headerStyle={{ textAlign: "center" }}
               visible={Display}
-              style={{ width: "60vw", height: "70vh" }}
+              style={{ width: "60vw", height: "60vh" }}
               onHide={() => {
                 setDisplay(false);
               }}
@@ -323,9 +325,11 @@ const Form = ({ submitCallback }) => {
                 lat={lat}
                 long={long}
                 className="p-4"
+                markerlatlng={{ lat: lat, lng: long }}
                 onMarkerChange={(latlng) => {
                   setMarker(latlng);
-                  console.log({ latlng });
+                  setlat(latlng.lat);
+                  setlong(latlng.lng);
                 }}
               />
             </Dialog>
@@ -348,7 +352,7 @@ const Form = ({ submitCallback }) => {
 
             <label
               htmlFor="email"
-              className="block text-900 font-larg mb-3"
+              className="block text-900 font-large mb-3"
               style={{ textAlign: "center" }}
             >
               Since when did you found that waste laying there

@@ -89,7 +89,7 @@ export default function Registration() {
           href="http://localhost:3000/login"
           className="font-medium no-underline ml-2 mb-3 text-blue-500 cursor-pointer"
         >
-          Sign Up
+          Sign In
         </a>
         <div className="social-media">
           <a href="#" className="social-icon">

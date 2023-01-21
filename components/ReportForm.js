@@ -66,7 +66,7 @@ const ReportForm = ({ reportData }) => {
         <div className="text-900 font-bold text-5xl mb-2">
           Thanks for filling the Form
         </div>
-        <div className="text-700 text-2xl mb-3">Need Immidiate action?</div>
+        <div className="text-700 text-2xl mb-3">Need Immediate action?</div>
         <Button
           onClick={handleMailGen}
           loading={loading}
@@ -81,15 +81,15 @@ const ReportForm = ({ reportData }) => {
             <AccordionTab
               header={
                 <React.Fragment>
-                  <i className="pi pi-info"></i>
-                  <span style={{ marginLeft: "20px" }}>Know More</span>
+                  {/* <i className="pi pi-info"></i> */}
+                  <span>Know More</span>
                 </React.Fragment>
               }
             >
               <p>
-                By clicking the button above, you will be redirected to the
-                Gmail application and an email will be automatically generated
-                with all the details mentioned in the previous form.
+                By clicking the button above, you will be asked to open your
+                mail application with an automatically generated email with all
+                the details mentioned in the form you just filled.
               </p>
             </AccordionTab>
           </Accordion>
