@@ -27,6 +27,7 @@ const OrgReports = ({ data: products, onResolve }) => {
     if (success) {
       console.log(node);
       node.disabled = true;
+      node.childNodes[1].textContent = "Resolved";
     }
   }
 
@@ -68,7 +69,9 @@ const OrgReports = ({ data: products, onResolve }) => {
             <Button
               disabled={data.status === "completed"}
               icon="pi pi-check"
-              label="Mark as Resolved"
+              label={
+                data.status === "completed" ? "Mark as Resolved" : "Resolved"
+              }
               onClick={(e) => {
                 resolveWorkflow(data._id, e.currentTarget);
               }}
@@ -116,7 +119,9 @@ const OrgReports = ({ data: products, onResolve }) => {
             <Button
               disabled={data.status === "completed"}
               icon="pi pi-check"
-              label="Mark as Resolved"
+              label={
+                data.status === "completed" ? "Mark as Resolved" : "Resolved"
+              }
               onClick={(e) => {
                 resolveWorkflow(data._id, e.currentTarget);
               }}
