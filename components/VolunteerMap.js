@@ -41,7 +41,7 @@ const VolunteerMap = ({ data, center }) => {
                 }}
               />
               <p style={{ textAlign: "center", fontSize: "1rem" }}>
-                <strong>Name</strong>
+                <strong>{Hover.username}</strong>
               </p>
             </div>
           </Popup>
