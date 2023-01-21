@@ -209,14 +209,14 @@ const Map = ({ lat = 51.505, long = -0.09 }) => {
                     {"  "}
                     {Hover.wasteType}
                   </span>
-                  <div className="text-700 text-1xl mb-3 pl-7 pr-7 text-center mt-3">
-                    {Hover.description}
-                  </div>
-                  <span className="block text-1.3xl mb-1 text-center mt-2">
+                  <span className="block text-1.3xl mb-3 text-center mt-2">
                     <strong>Address :</strong>
                     {"  "}
                     {Hover.address}
                   </span>
+                  <div className="text-700 text-1xl mb-1 pl-7 pr-7 text-center mt-3">
+                    {Hover.description}
+                  </div>
                 </div>
               </Dialog>
             </div>

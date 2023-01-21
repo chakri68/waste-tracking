@@ -356,8 +356,13 @@ const Form = ({ submitCallback }) => {
             <div style={{ display: "flex", justifyContent: "center" }}>
               <Calendar
                 id="icon"
+                showTime
+                hourFormat="24"
                 value={date}
-                onChange={(e) => setdate(e.value)}
+                onChange={(e) => {
+                  setdate(e.value);
+                  console.log({ calendar: e.value });
+                }}
                 showIcon
               />
             </div>

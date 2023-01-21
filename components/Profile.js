@@ -11,11 +11,12 @@ const Profile = () => {
   const [reportdata, setReportdata] = useState([]);
 
   useEffect(() => {
+    console.log({ session });
     if (session.status === "authenticated") {
       fetch("/api/reports", {
         method: "POST",
         body: JSON.stringify({
-          usernames: [session.data.user.username],
+          usernames: [session?.data?.user?.username],
         }),
         headers: {
           "Content-Type": "application/json",
@@ -35,7 +36,7 @@ const Profile = () => {
     setBasicRows(event.rows);
   };
   return (
-    <div className="root" style={{ backgroundColor: "white" }}>
+    <div className="root" style={{ backgroundColor: "white", height: "100vh" }}>
       <div>
         <NavBar />
       </div>
@@ -59,18 +60,20 @@ const Profile = () => {
             </div>
             <div className="mb-3 text-center">
               <span className="block text-2xl mb-1">
-                <strong>Name:</strong>test
+                <strong>Name: </strong>
+                {session?.data?.user?.username}
               </span>
               <span className="block text-2xl  mb-1">
-                <strong>Email:</strong> chaitanya.tata215@gmail.com
+                <strong>Email:</strong> {session?.data?.user?.email || "-"}
               </span>
               <span className="block text-2xl  mb-1">
-                <strong>Role:</strong> ____
+                <strong>Role:</strong> {session?.data?.user?.role || "-"}
               </span>
 
               <span className="block text-2xl  mb-1">
                 <strong>Number of contributions:</strong>
-                <img src="/Badge.webp" style={{ height: "50px" }} /> 0
+                <img src="/Badge.webp" style={{ height: "50px" }} />
+                {reportdata.length}
               </span>
             </div>
           </div>
@@ -82,59 +85,67 @@ const Profile = () => {
       >
         User Complaints
       </div>
-      <div className="items">
-        <div
-          className="border-2 border-dashed p-5 border-300 border-round-lg"
-          style={{
-            height: "300px",
-            boxShadow: "box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;",
-            margin: "40px",
-          }}
-        >
-          <div
-            className="grid grid-nogutter surface-0 text-800"
-            style={{ height: "300px" }}
-          >
+      <div className="items" style={{ height: "50vh" }}>
+        {reportdata.map((report, ind) => {
+          return (
             <div
-              className="col-12 md:col-6 overflow-hidden"
-              style={{ height: "300px" }}
-            >
-              <img
-                src="/p-3.jpeg"
-                alt="hero-1"
-                className="md:ml-auto block md:"
-                style={{ height: "300px", width: "340px" }}
-              />
-            </div>
-
-            <div
-              className="col-12 md:col-6 p-6 text-center md:text-left flex align-items-center"
+              key={report._id || ind}
+              className="border-2 border-dashed p-5 border-300 border-round-lg"
               style={{
                 height: "300px",
-                padding: "40px",
+                boxShadow:
+                  "box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;",
+                margin: "40px",
               }}
             >
-              <div className="surface-0 text-700 text-center">
-                <div className="text-900 font-bold text-4xl mb-1">Status</div>
-                <h5 style={{ color: "orange" }}>Pending</h5>
-                <div className="text-900 font-bold text-3xl mb-1">
-                  Description
+              <div
+                className="grid grid-nogutter surface-0 text-800"
+                style={{ height: "300px" }}
+              >
+                <div
+                  className="col-12 md:col-6 overflow-hidden"
+                  style={{ height: "300px" }}
+                >
+                  <img
+                    src={report.imageURL}
+                    alt="hero-1"
+                    className="md:ml-auto block md:"
+                    style={{ height: "300px", width: "340px" }}
+                  />
                 </div>
-                <div className="text-700 text-1xl mb-5">
-                  Your report is sucussfully submitted waiting for response
+
+                <div
+                  className="col-12 md:col-6 p-6 text-center md:text-left flex align-items-center"
+                  style={{
+                    height: "300px",
+                    padding: "40px",
+                  }}
+                >
+                  <div className="surface-0 text-700 text-center">
+                    <div className="text-900 font-bold text-4xl mb-1">
+                      {report.status}
+                    </div>
+                    <h5 style={{ color: "orange" }}>Pending</h5>
+                    <div className="text-900 font-bold text-3xl mb-1">
+                      {report.description}
+                    </div>
+                    <div className="text-700 text-1xl mb-5">
+                      Your report is sucussfully submitted waiting for response
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-        <Paginator
+          );
+        })}
+        {/* <Paginator
           className="p-5"
           first={basicFirst}
           rows={basicRows}
           totalRecords={120}
           rowsPerPageOptions={[10, 20, 30]}
           onPageChange={onBasicPageChange}
-        ></Paginator>
+        ></Paginator> */}
       </div>
     </div>
   );
