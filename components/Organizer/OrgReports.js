@@ -9,9 +9,11 @@ import { Toast } from "primereact/toast";
 import { Dialog } from "primereact/dialog";
 import OrgReportStats from "./OrgReportStat";
 import { parseCoords } from "../../lib/locationUtils";
+import { Checkbox } from "primereact/checkbox";
 
 const OrgReports = ({ data: products, onResolve }) => {
   // const [products, setProducts] = useState();
+  const [checked, setChecked] = useState(false);
   const [layout, setLayout] = useState("grid");
   const [Display, setDisplay] = useState(false);
 
@@ -51,9 +53,9 @@ const OrgReports = ({ data: products, onResolve }) => {
             <span className="block text-1.2xl  mb-3 ml-5 mr-5">
               <strong>Adderss :</strong> {data.address}
             </span>
-            <div className="product-description" style={{ fontSize: "1rem" }}>
-              {data.description}
-            </div>
+            <span className="block text-1.2xl  mb-3 ml-5 mr-5">
+              <strong>Description :</strong> {data.description}
+            </span>
           </div>
           <div
             className="product-list-action"
@@ -133,11 +135,23 @@ const OrgReports = ({ data: products, onResolve }) => {
   const renderHeader = () => {
     return (
       <div className="grid grid-nogutter gap-2">
-        <div className="col-6">
+        <div className="col-5">
           <DataViewLayoutOptions
             layout={layout}
             onChange={(e) => setLayout(e.value)}
           />
+        </div>
+        <div className="field-checkbox">
+          <Checkbox
+            checked={checked}
+            onChange={(e) => {
+              if (e.checked) {
+              } else {
+              }
+              setChecked(e.checked);
+            }}
+          />
+          <label htmlFor="binary">Show Pending Reports</label>
         </div>
       </div>
     );
@@ -151,7 +165,7 @@ const OrgReports = ({ data: products, onResolve }) => {
       </div>
       <div className="dataview-demo mt-8" style={{ backgroundColor: "white" }}>
         <div className="text-800 font-bold text-4xl mb-3 text-center">
-          Pending Reports
+          Reports in Your Locality
         </div>
         <div className="card  p-5">
           <DataView
