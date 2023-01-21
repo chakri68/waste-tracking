@@ -49,7 +49,7 @@ const Main = () => {
     dialogFuncMap[`${name}`](false);
   };
 
-  async function handleVolunteerFormSubmit() {
+  async function handleVolunteerFormSubmit(successCallback) {
     console.log("CLICK");
     setVolunteerFormLoading(true);
     let res = await fetch("/api/upload/volunteer", {
@@ -69,6 +69,7 @@ const Main = () => {
     let data = await res.json();
     console.log({ data });
     setVolunteerFormLoading(false);
+    successCallback();
   }
 
   return (
@@ -282,7 +283,13 @@ const Main = () => {
                       label="Submit"
                       icon="pi pi-user"
                       className="w-full"
-                      onClick={handleVolunteerFormSubmit}
+                      onClick={() => {
+                        handleVolunteerFormSubmit(() => {
+                          setDisplayResponsive(false);
+                          setDescription("");
+                          setReason("");
+                        });
+                      }}
                     />
                   </div>
                 </div>

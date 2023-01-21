@@ -189,36 +189,49 @@ const Map = ({ lat = 51.505, long = -0.09 }) => {
               <Dialog
                 className="mt-3"
                 visible={Display}
-                style={{ width: "50vw", height: "78vh" }}
+                style={{ width: "50vw", height: "75vh" }}
                 onHide={() => {
                   setDisplay(false);
                 }}
               >
                 <div className="card">
-                  <div className="p-4">
+                  <div
+                    className="p-4"
+                    style={{
+                      textAlign: "center",
+                      objectFit: "contain",
+                      objectPosition: "center",
+                      height: "300px",
+                    }}
+                  >
                     <img
                       src={Hover.imageURL}
                       alt="hyper"
-                      style={{ height: "30vh", width: "100%" }}
+                      style={{ height: "100%" }}
                       className="mb-3"
                     />
                   </div>
-                  <div className="mb-3 font-bold text-1.4xl text-center mt-3">
-                    <span className="text-900"> {Hover.sinceDate}</span>
+                  <div className="text-1.4xl pl-7 mt-3">
+                    <span className="text-900">
+                      <strong className="text-bold">Reported time:</strong>{" "}
+                      {Hover.sinceDate}
+                    </span>
                   </div>
-                  <span className="block text-1.3xl mb-1 text-center mt-2">
+                  <span className="block text-1.3xl mb-1 pl-7 mt-2">
                     <strong>Type of waste :</strong>
                     {"  "}
                     {Hover.wasteType}
                   </span>
-                  <span className="block text-1.3xl mb-3 text-center mt-2">
+                  <span className="block text-1.3xl mb-3 pl-7 mt-2">
                     <strong>Address :</strong>
                     {"  "}
                     {Hover.address}
                   </span>
-                  <div className="text-700 text-1xl mb-1 pl-7 pr-7 text-center mt-3">
+                  <span className="block text-1.3xl mb-3 pl-7">
+                    <strong>Description :</strong>
+                    {"  "}
                     {Hover.description}
-                  </div>
+                  </span>
                 </div>
               </Dialog>
             </div>

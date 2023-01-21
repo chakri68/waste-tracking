@@ -21,7 +21,11 @@ export default async function handler(req, res) {
     res.status(200).json({
       ok: true,
       // TODO: Remove the '||'
-      user: { username: username, role: userWithUsername?.role || "user" },
+      user: {
+        username: username,
+        role: userWithUsername?.role || "user",
+        email: userWithUsername.email,
+      },
     });
   } catch (err) {
     console.log("Caught Error: ", err);

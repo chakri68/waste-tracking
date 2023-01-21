@@ -255,7 +255,7 @@ const Form = ({ submitCallback }) => {
           </div>
 
           <div>
-            <h5>Template</h5>
+            <p className="block text-900 font-large mb-3">Upload Files</p>
             <FileUpload
               ref={fileUploadRef}
               name="demo[]"
