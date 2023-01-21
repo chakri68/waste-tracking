@@ -31,6 +31,11 @@ const Main = () => {
       setlong(position.coords.longitude);
     });
   }, []);
+  useEffect(() => {
+    fetch(
+      "https://api.openweathermap.org/data/2.5/air_pollution/forecast?lat='${lat}'&lon=${long}&appid=ad618ee0b3bab1a2761856407b51ed14"
+    );
+  }, []);
 
   const dialogFuncMap = {
     displayResponsive: setDisplayResponsive,
