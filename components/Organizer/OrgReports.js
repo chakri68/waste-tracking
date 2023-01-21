@@ -12,7 +12,11 @@ import { parseCoords } from "../../lib/locationUtils";
 import { Checkbox } from "primereact/checkbox";
 
 const OrgReports = ({ data: products, onResolve }) => {
-  // const [products, setProducts] = useState();
+  const [data, setData] = useState(products || []);
+
+  useEffect(() => {
+    setData(products || []);
+  }, [products]);
   const [checked, setChecked] = useState(false);
   const [layout, setLayout] = useState("grid");
   const [Display, setDisplay] = useState(false);
@@ -23,6 +27,7 @@ const OrgReports = ({ data: products, onResolve }) => {
     if (success) {
       console.log(node);
       node.disabled = true;
+      node.childNodes[1].textContent = "Resolved";
     }
   }
 
@@ -64,7 +69,9 @@ const OrgReports = ({ data: products, onResolve }) => {
             <Button
               disabled={data.status === "completed"}
               icon="pi pi-check"
-              label="Mark as Resolved"
+              label={
+                data.status === "completed" ? "Mark as Resolved" : "Resolved"
+              }
               onClick={(e) => {
                 resolveWorkflow(data._id, e.currentTarget);
               }}
@@ -112,7 +119,9 @@ const OrgReports = ({ data: products, onResolve }) => {
             <Button
               disabled={data.status === "completed"}
               icon="pi pi-check"
-              label="Mark as Resolved"
+              label={
+                data.status === "completed" ? "Mark as Resolved" : "Resolved"
+              }
               onClick={(e) => {
                 resolveWorkflow(data._id, e.currentTarget);
               }}
@@ -145,8 +154,15 @@ const OrgReports = ({ data: products, onResolve }) => {
           <Checkbox
             checked={checked}
             onChange={(e) => {
+              console.log({ data });
               if (e.checked) {
+                setData(
+                  products.filter((product) => {
+                    return product.status === "pending";
+                  })
+                );
               } else {
+                setData(products);
               }
               setChecked(e.checked);
             }}
@@ -169,7 +185,7 @@ const OrgReports = ({ data: products, onResolve }) => {
         </div>
         <div className="card  p-5">
           <DataView
-            value={products}
+            value={data}
             layout={layout}
             header={header}
             itemTemplate={itemTemplate}
