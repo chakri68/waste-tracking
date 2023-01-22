@@ -24,10 +24,11 @@ const Profile = () => {
       })
         .then((res) => res.json())
         .then((data) => {
+          console.log({ data });
           setReportdata(data.result[0].reports);
         });
     }
-  }, []);
+  }, [session]);
 
   const [basicFirst, setBasicFirst] = useState(0);
   const [basicRows, setBasicRows] = useState(10);
@@ -85,68 +86,58 @@ const Profile = () => {
       >
         User Complaints
       </div>
-      <div className="items" style={{ height: "50vh" }}>
-        {reportdata.map((report, ind) => {
-          return (
+      {reportdata.length > 0 ? (
+        <div className="items" style={{ height: "50vh" }}>
+          <div
+            className="border-2 border-dashed p-5 border-300 border-round-lg"
+            style={{
+              height: "300px",
+              boxShadow: "box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;",
+              margin: "40px",
+            }}
+          >
             <div
-              key={report._id || ind}
-              className="border-2 border-dashed p-5 border-300 border-round-lg"
-              style={{
-                height: "300px",
-                boxShadow:
-                  "box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;",
-                margin: "40px",
-              }}
+              className="grid grid-nogutter surface-0 text-800"
+              style={{ height: "300px" }}
             >
               <div
-                className="grid grid-nogutter surface-0 text-800"
+                className="col-12 md:col-6 overflow-hidden"
                 style={{ height: "300px" }}
               >
-                <div
-                  className="col-12 md:col-6 overflow-hidden"
-                  style={{ height: "300px" }}
-                >
-                  <img
-                    src={report.imageURL}
-                    alt="hero-1"
-                    className="md:ml-auto block md:"
-                    style={{ height: "300px", width: "340px" }}
-                  />
-                </div>
+                <img
+                  src={reportdata[reportdata.length - 1].imageURL}
+                  alt="hero-1"
+                  className="md:ml-auto block md:"
+                  style={{ height: "300px", width: "340px" }}
+                />
+              </div>
 
-                <div
-                  className="col-12 md:col-6 p-6 text-center md:text-left flex align-items-center"
-                  style={{
-                    height: "300px",
-                    padding: "40px",
-                  }}
-                >
-                  <div className="surface-0 text-700 text-center">
-                    <div className="text-900 font-bold text-4xl mb-1">
-                      {report.status}
-                    </div>
-                    <h5 style={{ color: "orange" }}>Pending</h5>
-                    <div className="text-900 font-bold text-3xl mb-1">
-                      {report.description}
-                    </div>
-                    <div className="text-700 text-1xl mb-5">
-                      Your report is successfully submitted waiting for response
-                    </div>
+              <div
+                className="col-12 md:col-6 p-6 text-center md:text-left flex align-items-center"
+                style={{
+                  height: "300px",
+                  padding: "40px",
+                }}
+              >
+                <div className="surface-0 text-700 text-center">
+                  <div className="text-900 font-bold text-4xl mb-1">
+                    {reportdata[reportdata.length - 1].status}
+                  </div>
+                  <h5 style={{ color: "orange" }}>Pending</h5>
+                  <div className="text-900 font-bold text-3xl mb-1">
+                    {reportdata[reportdata.length - 1].description}
+                  </div>
+                  <div className="text-700 text-1xl mb-5">
+                    Your report is successfully submitted waiting for response
                   </div>
                 </div>
               </div>
             </div>
-          );
-        })}
-        {/* <Paginator
-          className="p-5"
-          first={basicFirst}
-          rows={basicRows}
-          totalRecords={120}
-          rowsPerPageOptions={[10, 20, 30]}
-          onPageChange={onBasicPageChange}
-        ></Paginator> */}
-      </div>
+          </div>
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 };

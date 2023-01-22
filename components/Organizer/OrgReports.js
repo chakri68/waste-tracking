@@ -10,6 +10,7 @@ import { Dialog } from "primereact/dialog";
 import OrgReportStats from "./OrgReportStat";
 import { parseCoords } from "../../lib/locationUtils";
 import { Checkbox } from "primereact/checkbox";
+import DataStats from "../Datastats";
 
 const OrgReports = ({ data: products, onResolve }) => {
   const [data, setData] = useState(products || []);
@@ -20,6 +21,7 @@ const OrgReports = ({ data: products, onResolve }) => {
   const [checked, setChecked] = useState(false);
   const [layout, setLayout] = useState("grid");
   const [Display, setDisplay] = useState(false);
+  const [Displaystats, setDisplaystats] = useState(false);
 
   async function resolveWorkflow(id, node) {
     let success = await onResolve(id);
@@ -109,8 +111,28 @@ const OrgReports = ({ data: products, onResolve }) => {
             <div className="product-description" style={{ height: "50px" }}>
               {data.description}
             </div>
+
             {/* <Rating value={data.rating} readOnly cancel={false}></Rating> */}
           </div>
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <Button
+              onClick={() => {
+                setDisplaystats(true);
+              }}
+              label="View Statics of this litter"
+              className="p-button-text mt-3 mb-2 "
+            />
+          </div>
+          <Dialog
+            className="mt-3"
+            visible={Displaystats}
+            style={{ width: "60vw", height: "80vh" }}
+            onHide={() => {
+              setDisplaystats(false);
+            }}
+          >
+            <DataStats />
+          </Dialog>
           <div
             className="product-grid-item-bottom"
             style={{ display: "flex", justifyContent: "center" }}

@@ -14,6 +14,7 @@ import OrgReports from "../components/Organizer/OrgReports";
 import OrgReportStats from "../components/Organizer/OrgReportStat";
 import Find from "../components/Find";
 import OrgVolunteers from "../components/Organizer/OrgVolunteers";
+import DataStats from "../components/Datastats";
 // import "primeflex@3.2.1/primeflex.min.css";
 // {
 //   <link
@@ -29,6 +30,7 @@ export default function Home() {
     <>
       <Main />
       {/* <Find /> */}
+      {/* <DataStats /> */}
       {/* <OrgMain /> */}
       {/* <OrgReports /> */}
       {/* <OrgVolunteers /> */}
